@@ -5,12 +5,17 @@ module.exports = {
     author: `@niaw`,
   },
   plugins: [
-    'gatsby-plugin-emotion',
+    `gatsby-plugin-styled-components`,
+    `gatsby-plugin-postcss`,
+    'gatsby-plugin-resolve-src',
     {
-      resolve: `gatsby-plugin-postcss`,
+      resolve: `gatsby-plugin-purgecss`,
       options: {
-        postCssPlugins: [require("tailwindcss"), require("autoprefixer")]
-      }
+        tailwind: true,
+        printRejected: true,
+        purgeOnly: [`src/styles/globals.css`],
+        // develop: true, // Enable while using `gatsby develop`
+      },
     },
     {
       resolve: `gatsby-plugin-google-fonts`,

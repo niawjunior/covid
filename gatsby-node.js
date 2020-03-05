@@ -1,5 +1,12 @@
 const fetch = require(`node-fetch`)
 
+exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
+  const config = getConfig()
+  config.node = {
+    fs: "empty",
+  }
+}
+
 exports.sourceNodes = async ({
   actions: { createNode },
   createContentDigest,
