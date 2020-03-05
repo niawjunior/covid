@@ -28,6 +28,13 @@ module.exports = {
     },
     'gatsby-plugin-react-helmet',
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/images`,
+      },
+    },
+    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: 'covid19',
@@ -36,7 +43,7 @@ module.exports = {
         background_color: '#663399',
         theme_color: '#663399',
         display: 'minimal-ui',
-        icon: 'src/images/gatsby-icon.png',
+        icon: 'src/images/favicon.icon',
       },
     },
     'gatsby-plugin-offline',
