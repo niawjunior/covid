@@ -1,6 +1,6 @@
 import React from "react"
 import { ResponsivePie } from "@nivo/pie"
-
+import { Skeleton } from "antd"
 const Pie = ({ confirmed, recovered, deaths }) => {
   const data = [
     {
@@ -35,31 +35,35 @@ const Pie = ({ confirmed, recovered, deaths }) => {
     },
   }
 
-  return (
-    <ResponsivePie
-      theme={lineGraphSettings.theme}
-      data={data}
-      margin={{ top: 40, right: 90, bottom: 60, left: 90 }}
-      innerRadius={0.2}
-      sortByValue={true}
-      padAngle={2}
-      cornerRadius={0}
-      colors={d => d.color}
-      borderWidth={1}
-      radialLabelsTextXOffset={5}
-      radialLabelsTextColor="#ffffff"
-      radialLabelsLinkOffset={0}
-      radialLabelsLinkDiagonalLength={10}
-      radialLabelsLinkHorizontalLength={5}
-      radialLabelsLinkStrokeWidth={1}
-      radialLabelsLinkColor={{ from: "color" }}
-      slicesLabelsSkipAngle={10}
-      slicesLabelsTextColor="#000000"
-      animate={true}
-      motionStiffness={90}
-      motionDamping={15}
-    />
-  )
+  if (!confirmed || confirmed.length === 0) {
+    return <Skeleton active />
+  } else {
+    return (
+      <ResponsivePie
+        theme={lineGraphSettings.theme}
+        data={data}
+        margin={{ top: 40, right: 90, bottom: 60, left: 90 }}
+        innerRadius={0.2}
+        sortByValue={true}
+        padAngle={2}
+        cornerRadius={0}
+        colors={d => d.color}
+        borderWidth={1}
+        radialLabelsTextXOffset={5}
+        radialLabelsTextColor="#ffffff"
+        radialLabelsLinkOffset={0}
+        radialLabelsLinkDiagonalLength={10}
+        radialLabelsLinkHorizontalLength={5}
+        radialLabelsLinkStrokeWidth={1}
+        radialLabelsLinkColor={{ from: "color" }}
+        slicesLabelsSkipAngle={10}
+        slicesLabelsTextColor="#000000"
+        animate={true}
+        motionStiffness={90}
+        motionDamping={15}
+      />
+    )
+  }
 }
 
 export default Pie

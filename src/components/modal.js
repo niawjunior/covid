@@ -11,7 +11,7 @@ const ModalView = ({ visible, modalClick }) => {
       onCancel={modalClick}
       footer={[<Button onClick={modalClick}>ปิด</Button>]}
     >
-      <div className="h-auto w-auto">
+      <div className="h-56 w-auto">
         <Bar />
       </div>
     </Modal>
