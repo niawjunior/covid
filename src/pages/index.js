@@ -10,8 +10,6 @@ import Recovered from "../components/recovered"
 import Healing from "../components/healing"
 import Pie from "../components/pie"
 import Table from "../components/table"
-import { Skeleton } from "antd"
-
 const StyledPie = styled.div`
   height: 18rem;
 `
@@ -123,7 +121,6 @@ const IndexPage = props => {
           </div>
         </div>
         <div className="flex flex-col mt-5">
-          {(!getConfirmed || getConfirmed.length === 0) && <Skeleton active />}
           <StyledPie className="text-center bg-gray-800 rounded overflow-hidden shadow-lg">
             <h1 className="text-white mt-4">เปรียบเทียบอัตราส่วน</h1>
             <Pie

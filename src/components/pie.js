@@ -1,7 +1,6 @@
 import React from "react"
 import { ResponsivePie } from "@nivo/pie"
 const Pie = ({ confirmed, recovered, deaths }) => {
-  console.log(confirmed)
   const data = [
     {
       id: "รวมทั้งหมด",

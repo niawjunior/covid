@@ -101,13 +101,13 @@ const Table = ({ confirmed, recovered, deaths }) => {
         pagination={{ pageSize: 5 }}
         dataSource={finalData}
         onRow={(record, rowIndex) => {
-          if (!record.parent) {
-            return {
-              onClick: event => {
+          return {
+            onClick: () => {
+              if (!record.parent) {
                 setVisible(true)
                 console.log(record)
-              },
-            }
+              }
+            },
           }
         }}
       />

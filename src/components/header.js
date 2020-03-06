@@ -1,7 +1,5 @@
 import React, { useState } from "react"
 import { Link } from "gatsby"
-// import styled from 'react-emotion'
-// import tw from "tailwind.macro"
 
 const Header = ({ siteTitle }) => {
   const [navOpen, setNavOpen] = useState(false)
