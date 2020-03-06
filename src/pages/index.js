@@ -9,6 +9,7 @@ import Deaths from "../components/deaths"
 import Recovered from "../components/recovered"
 import Healing from "../components/healing"
 import Pie from "../components/pie"
+import Table from "../components/table"
 
 const StyledPie = styled.div`
   height: 18rem;
@@ -120,6 +121,15 @@ const IndexPage = props => {
               deaths={getDeaths}
             />
           </StyledPie>
+        </div>
+        <div className="grid grid-cols-12 mt-5 ">
+          <div className="bg-gray-800 col-span-12 text-center px-4 py-4 rounded overflow-hidden shadow-lg">
+            <Table
+              confirmed={getConfirmed}
+              recovered={getRecovered}
+              deaths={getDeaths}
+            />
+          </div>
         </div>
       </Layout>
       <Footer />

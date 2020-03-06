@@ -6,6 +6,7 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-styled-components`,
+    `gatsby-plugin-antd`,
     `gatsby-plugin-postcss`,
     "gatsby-plugin-resolve-src",
     {
