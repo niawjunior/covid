@@ -4,8 +4,8 @@ import { ResponsivePie } from "@nivo/pie"
 const Pie = ({ confirmed, recovered, deaths }) => {
   const data = [
     {
-      id: "ยอดผู้ป่วยสะสม",
-      label: "ยอดผู้ป่วยสะสม",
+      id: "ยอดสะสม",
+      label: "ยอดสะสม",
       value: confirmed.sum,
       color: "hsl(143, 55%, 62%)",
     },
