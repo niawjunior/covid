@@ -64,7 +64,7 @@ const Table = ({ confirmed, recovered, deaths }) => {
       },
     },
     {
-      title: "ยอดที่ได้รับการยืนยัน",
+      title: "รวมทั้งหมด",
       dataIndex: "confirmed",
       key: "confirmed",
       render: number => number.toLocaleString(),
