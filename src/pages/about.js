@@ -1,10 +1,11 @@
-import React from 'react'
+import React from "react"
+import Layout from "../components/layout"
 
 const About = () => {
   return (
-    <div>
-      <h1>About</h1>
-    </div>
+    <Layout>
+      <h1 className="text-center">Made with JS ขำๆ</h1>
+    </Layout>
   )
 }
 
