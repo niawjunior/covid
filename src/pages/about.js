@@ -4,7 +4,7 @@ const About = () => {
   return (
     <Layout>
       <div className="flex flex-col content-center">
-        <div className="h-auto">
+        <div className="h-64">
           <div className="px-6 py-4 text-center">
             <p>
               สวัสดีครับ ผมแอดมิน จากเพจ{" "}
@@ -15,8 +15,8 @@ const About = () => {
               >
                 <span className="text-blue-500">JS ขำๆ </span>
               </a>
-              ได้จัดทำเว็บไซต์นี้ขึ้นมา เพื่อเป็นอีกหนึ่งทางเลือก
-              ในการติดตามสถานการณ์ COVID-19 ครับ
+              ได้จัดทำเว็บไซต์นี้ขึ้นมา เพื่อเป็นอีกหนึ่งช่องทาง ที่ช่วย
+              ติดตามสถานการณ์ COVID-19 ครับ
             </p>
           </div>
         </div>

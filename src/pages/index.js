@@ -68,15 +68,24 @@ const IndexPage = props => {
               </svg>
             </div>
             <div>
-              <p className="font-bold">Update ข้อมูล ทุกๆ 1 ชั่วโมง</p>
+              <p className="font-bold">
+                ข้อมูลในเว็บไซต์ จะ update ทุกๆ 1 ชั่วโมง โดยโช้ข้อมูลจาก{" "}
+                <a
+                  href="https://systems.jhu.edu/research/public-health/ncov/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  CSSEGISandData
+                </a>
+              </p>
               <p className="text-sm">
-                อ้างอิงข้อมูลจาก{" "}
+                ขอบคุณข้อมูลจาก{" "}
                 <a
                   href="https://github.com/CSSEGISandData/COVID-19"
                   rel="noopener noreferrer"
                   target="_blank"
                 >
-                  CSSEGISandData
+                  Johns Hopkins CSSE
                 </a>
               </p>
             </div>

@@ -8,7 +8,7 @@ const Confirmed = props => {
   return (
     <div>
       <div className="font-bold text-lg mb-2 text-center text-white mt-4">
-        ยอดที่ได้รับการยืนยัน
+        รวมทั้งหมด
       </div>
       <StyledText className="font-bold text-center text-green-400 mt-3">
         {props.confirmed.sum.toLocaleString()}

@@ -1,8 +1,15 @@
-import React from "react"
+import React, { useState } from "react"
 import { Table as DataTable } from "antd"
+import Modal from "./modal"
 import _ from "lodash"
 
 const Table = ({ confirmed, recovered, deaths }) => {
+  const [visible, setVisible] = useState(false)
+
+  const showModal = () => {
+    setVisible(false)
+  }
+
   const { sum: confirmedSum, ...confirmedData } = confirmed
   const { sum: recoveredSum, ...recoveredData } = recovered
   const { sum: deathsSum, ...deathsData } = deaths
@@ -18,10 +25,13 @@ const Table = ({ confirmed, recovered, deaths }) => {
         )
         return {
           key: Number(index),
+          from: value.country_region,
+          parent: false,
           country_region: item.province_state,
           confirmed: _.last(item.data).value,
           recovered: recovered,
           deaths: deaths,
+          timeline: item.data,
           healing: _.last(item.data).value - (recovered + deaths),
         }
       })
@@ -29,6 +39,7 @@ const Table = ({ confirmed, recovered, deaths }) => {
 
     const data = {
       key: key,
+      parent: true,
       country_region: value.country_region,
       confirmed: value.sum,
       recovered: recoveredData[key].sum,
@@ -44,7 +55,13 @@ const Table = ({ confirmed, recovered, deaths }) => {
       title: "ประเทศ / ภูมิภาค",
       dataIndex: "country_region",
       key: "country_region",
-      render: text => (text ? text : "ไม่ได้ระบุ"),
+      render: (text, record) => {
+        return (
+          <span className={record.parent ? "" : "text-blue-500 cursor-pointer"}>
+            {text === "" ? "ไม่ได้ระบุ" : text}
+          </span>
+        )
+      },
     },
     {
       title: "ยอดที่ได้รับการยืนยัน",
@@ -73,6 +90,28 @@ const Table = ({ confirmed, recovered, deaths }) => {
   ]
 
   const finalData = dataArr.sort((a, b) => b.confirmed - a.confirmed)
-  return <DataTable columns={columns} dataSource={finalData} />
+
+  return (
+    <>
+      <Modal visible={visible} modalClick={showModal} />
+      <DataTable
+        size="middle"
+        scroll={{ x: 1000, y: 250 }}
+        columns={columns}
+        pagination={{ pageSize: 5 }}
+        dataSource={finalData}
+        onRow={(record, rowIndex) => {
+          if (!record.parent) {
+            return {
+              onClick: event => {
+                setVisible(true)
+                console.log(record)
+              },
+            }
+          }
+        }}
+      />
+    </>
+  )
 }
 export default Table
