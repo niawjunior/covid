@@ -5,7 +5,7 @@ const About = () => {
   return (
     <Layout>
       <div className="flex flex-col content-center">
-        <div className="lg:col-span-4 md:col-span-6 sm:col-span-12 col-span-12  rounded overflow-hidden h-20">
+        <div className="h-auto">
           <div className="px-6 py-4 text-center">
             <p>
               สวัสดีครับ ผมแอดมิน จากเพจ{" "}

@@ -3,7 +3,6 @@ import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { StaticQuery, graphql } from "gatsby"
 import Header from "./header"
-
 const Layout = ({ children }) => (
   <StaticQuery
     query={graphql`
@@ -30,7 +29,7 @@ const Layout = ({ children }) => (
           <html lang="en" />
         </Helmet>
         <Header siteTitle={data.site.siteMetadata.title} />
-        <div className="p-5 antialiased text-gray-900 items-center">
+        <div className="p-4 antialiased text-gray-900 items-center">
           <div className="shadow-2xl px-4 py-4">{children}</div>
         </div>
       </>
