@@ -2,6 +2,7 @@ import React from "react"
 import _ from "lodash"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
+import styled from "styled-components"
 
 import Confirmed from "../components/confirmed"
 import Deaths from "../components/deaths"
@@ -9,6 +10,9 @@ import Recovered from "../components/recovered"
 import Healing from "../components/healing"
 import Pie from "../components/pie"
 
+const StyledPie = styled.div`
+  height: 18rem;
+`
 const mapByCountry = data => {
   const result = _.chain(data)
     .groupBy("country_region")
@@ -47,6 +51,35 @@ const IndexPage = props => {
 
   return (
     <Layout>
+      <div
+        className="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md mb-4"
+        role="alert"
+      >
+        <div className="flex">
+          <div className="py-1">
+            <svg
+              className="fill-current h-6 w-6 text-teal-500 mr-4"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+            >
+              <path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z" />
+            </svg>
+          </div>
+          <div>
+            <p className="font-bold">Update ข้อมูล ทุกๆ 1 ชั่วโมง</p>
+            <p className="text-sm">
+              อ้างอิงข้อมูลจาก{" "}
+              <a
+                href="https://github.com/CSSEGISandData/COVID-19"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                CSSEGISandData
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
       <div className="grid grid-cols-12 gap-4">
         <div className="lg:col-span-3 md:col-span-6 sm:col-span-12 col-span-12 bg-gray-800 rounded overflow-hidden shadow-lg h-48">
           <Confirmed
@@ -77,14 +110,15 @@ const IndexPage = props => {
           />
         </div>
       </div>
-      <div className="flex flex-col bg-gray-200 mt-5">
-        <div className="text-center bg-gray-800 rounded overflow-hidden shadow-lg h-64">
+      <div className="flex flex-col mt-5">
+        <StyledPie className="text-center bg-gray-800 rounded overflow-hidden shadow-lg">
+          <h1 className="text-white mt-4">เปรียบเทียบอัตราส่วน</h1>
           <Pie
             confirmed={getConfirmed}
             recovered={getRecovered}
             deaths={getDeaths}
           />
-        </div>
+        </StyledPie>
       </div>
     </Layout>
   )

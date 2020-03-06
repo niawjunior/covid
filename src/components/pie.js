@@ -4,8 +4,8 @@ import { ResponsivePie } from "@nivo/pie"
 const Pie = ({ confirmed, recovered, deaths }) => {
   const data = [
     {
-      id: "ยอดสะสม",
-      label: "ยอดสะสม",
+      id: "ยอดที่ได้รับการยืนยัน",
+      label: "ยอดที่ได้รับการยืนยัน",
       value: confirmed.sum,
       color: "hsl(143, 55%, 62%)",
     },
@@ -29,13 +29,20 @@ const Pie = ({ confirmed, recovered, deaths }) => {
     },
   ]
 
+  const lineGraphSettings = {
+    theme: {
+      fontFamily: "Kanit",
+    },
+  }
+
   return (
     <ResponsivePie
+      theme={lineGraphSettings.theme}
       data={data}
-      margin={{ top: 40, right: 100, bottom: 40, left: 100 }}
+      margin={{ top: 40, right: 120, bottom: 60, left: 120 }}
       innerRadius={0.5}
       sortByValue={true}
-      padAngle={0.7}
+      padAngle={2}
       cornerRadius={3}
       colors={d => d.color}
       borderWidth={1}
@@ -43,7 +50,7 @@ const Pie = ({ confirmed, recovered, deaths }) => {
       radialLabelsTextColor="#ffffff"
       radialLabelsLinkOffset={0}
       radialLabelsLinkDiagonalLength={10}
-      radialLabelsLinkHorizontalLength={10}
+      radialLabelsLinkHorizontalLength={5}
       radialLabelsLinkStrokeWidth={1}
       radialLabelsLinkColor={{ from: "color" }}
       slicesLabelsSkipAngle={10}
