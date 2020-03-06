@@ -7,7 +7,7 @@ module.exports = {
   plugins: [
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-postcss`,
-    'gatsby-plugin-resolve-src',
+    "gatsby-plugin-resolve-src",
     {
       resolve: `gatsby-plugin-purgecss`,
       options: {
@@ -20,25 +20,23 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
-        fonts: [
-          `Kanit`
-        ],
-        display: 'swap'
-      }
+        fonts: [`Kanit`],
+        display: "swap",
+      },
     },
-    'gatsby-plugin-react-helmet',
+    "gatsby-plugin-react-helmet",
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: 'covid19',
-        short_name: 'starter',
-        start_url: '/',
-        background_color: '#663399',
-        theme_color: '#663399',
-        display: 'minimal-ui',
-        icon: 'src/images/icon.png',
+        name: "covid19",
+        short_name: "covid-19",
+        start_url: "/",
+        background_color: "#663399",
+        theme_color: "#663399",
+        display: "minimal-ui",
+        icon: "src/images/icon.png",
       },
     },
-    'gatsby-plugin-offline',
+    "gatsby-plugin-offline",
   ],
 }
