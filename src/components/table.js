@@ -5,7 +5,7 @@ import _ from "lodash"
 
 const Table = ({ confirmed, recovered, deaths }) => {
   const [visible, setVisible] = useState(false)
-
+  const [provinceData, setProvinceData] = useState(null)
   const showModal = () => {
     setVisible(false)
   }
@@ -31,7 +31,11 @@ const Table = ({ confirmed, recovered, deaths }) => {
           confirmed: _.last(item.data).value,
           recovered: recovered,
           deaths: deaths,
-          timeline: item.data,
+          timeline: {
+            confirmed: item.data,
+            recovered: recoveredData[key].data[index].data,
+            deaths: deathsData[key].data[index].data,
+          },
           healing: _.last(item.data).value - (recovered + deaths),
         }
       })
@@ -93,7 +97,14 @@ const Table = ({ confirmed, recovered, deaths }) => {
 
   return (
     <>
-      <Modal visible={visible} modalClick={showModal} />
+      {visible && (
+        <Modal
+          key={1}
+          data={provinceData}
+          visible={visible}
+          modalClick={showModal}
+        />
+      )}
       <DataTable
         size="middle"
         scroll={{ x: 1000, y: 250 }}
@@ -104,8 +115,8 @@ const Table = ({ confirmed, recovered, deaths }) => {
           return {
             onClick: () => {
               if (!record.parent) {
+                setProvinceData(record)
                 setVisible(true)
-                console.log(record)
               }
             },
           }

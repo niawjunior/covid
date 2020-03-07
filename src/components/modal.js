@@ -1,56 +1,62 @@
 import React from "react"
 import { Modal, Button, Table } from "antd"
 
-const ModalView = ({ visible, modalClick }) => {
+const ModalView = ({ visible, modalClick, data }) => {
+  console.log(data)
   const columns = [
     {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
+      title: "วันที่",
+      dataIndex: "date",
+      key: "date",
     },
     {
-      title: "Age",
-      dataIndex: "age",
-      key: "age",
+      title: "รวมทั้งหมด",
+      dataIndex: "confirmed",
+      key: "confirmed",
     },
     {
-      title: "Address",
-      dataIndex: "address",
-      key: "address",
+      title: "กำลังรักษา",
+      dataIndex: "healing",
+      key: "healing",
+    },
+    {
+      title: "รักษาหายแล้ว",
+      dataIndex: "recovered",
+      key: "recovered",
+    },
+    {
+      title: "เสียชีวิต",
+      dataIndex: "deaths",
+      key: "deaths",
     },
   ]
 
-  const data = [
+  const dataArr = [
     {
       key: "1",
-      name: "John Brown",
-      age: 32,
-      address: "New York No. 1 Lake Park",
-    },
-    {
-      key: "2",
-      name: "Jim Green",
-      age: 42,
-      address: "London No. 1 Lake Park",
-    },
-    {
-      key: "3",
-      name: "Joe Black",
-      age: 32,
-      address: "Sidney No. 1 Lake Park",
+      date: "20/02/2020",
+      confirmed: 20000,
+      healing: 32,
+      recovered: 10000,
+      deaths: 10000,
     },
   ]
 
   return (
     <Modal
-      key={1}
-      title="สถิติ 5 วัน ย้อนหลัง"
+      width="600px"
+      title="สถิติ ย้อนหลัง"
       visible={visible}
       onCancel={modalClick}
       footer={[<Button onClick={modalClick}>ปิด</Button>]}
     >
-      <div className="h-56 w-100">
-        <Table size="small" columns={columns} dataSource={data} />
+      <div className="h-auto w-100">
+        <Table
+          size="small"
+          columns={columns}
+          dataSource={dataArr}
+          pagination={{ pageSize: 5 }}
+        />
       </div>
     </Modal>
   )

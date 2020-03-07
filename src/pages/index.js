@@ -75,10 +75,8 @@ const IndexPage = props => {
                   target="_blank"
                 >
                   CSSEGISandData
-                </a>
-              </p>
-              <p className="text-sm">
-                ขอบคุณ{" "}
+                </a>{" "}
+                (ดึงข้อมูลมา ทุกๆ 5 ชั่วโมง) ขอบคุณ{" "}
                 <a
                   href="https://github.com/CSSEGISandData/COVID-19"
                   rel="noopener noreferrer"
