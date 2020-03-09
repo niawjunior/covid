@@ -44,10 +44,154 @@ const mapLastData = data => {
     sum: result.reduce((a, b) => (a += b.sum), 0),
   }
 }
+
 const IndexPage = props => {
   const getConfirmed = mapLastData(mapByCountry(props.data.confirmed.data))
   const getRecovered = mapLastData(mapByCountry(props.data.recovered.data))
   const getDeaths = mapLastData(mapByCountry(props.data.deaths.data))
+
+  const { sum: confirmedSum, ...confirmedData } = getConfirmed
+  const { sum: recoveredSum, ...recoveredData } = getRecovered
+  const { sum: deathsSum, ...deathsData } = getDeaths
+
+  const result = Object.entries(confirmedData).map(([key, value]) => {
+    const data = value.data.map((item, index) => {
+      const confirmedToday = Number(item.data[item.data.length - 1].value)
+      const confirmedYesterday = Number(item.data[item.data.length - 2].value)
+      const confirmedCompare = Number(confirmedToday - confirmedYesterday)
+
+      const recoveredToday = Number(
+        recoveredData[key].data[index].data[
+          recoveredData[key].data[index].data.length - 1
+        ].value
+      )
+      const recoveredYesterday = Number(
+        recoveredData[key].data[index].data[
+          recoveredData[key].data[index].data.length - 2
+        ].value
+      )
+      const recoveredCompare = Number(recoveredToday - recoveredYesterday)
+
+      const deathsToday = Number(
+        deathsData[key].data[index].data[
+          deathsData[key].data[index].data.length - 1
+        ].value
+      )
+      const deathsYesterday = Number(
+        deathsData[key].data[index].data[
+          deathsData[key].data[index].data.length - 2
+        ].value
+      )
+      const deathsCompare = Number(deathsToday - deathsYesterday)
+
+      const healingToday = Number(
+        confirmedToday - (recoveredToday + deathsToday)
+      )
+      const healingYesterday = Number(
+        confirmedYesterday - (recoveredYesterday + deathsYesterday)
+      )
+      const healingCompare = Number(healingToday - healingYesterday)
+
+      return {
+        confirmedToday,
+        confirmedYesterday,
+        confirmedCompare,
+        recoveredToday,
+        recoveredYesterday,
+        recoveredCompare,
+        deathsToday,
+        deathsYesterday,
+        deathsCompare,
+        healingToday,
+        healingYesterday,
+        healingCompare,
+      }
+    })
+
+    const sum = _(data)
+      .groupBy(
+        "confirmedToday",
+        "confirmedYesterday",
+        "recoveredToday",
+        "recoveredYesterday",
+        "deathsToday",
+        "deathsYesterday",
+        "healingToday",
+        "healingYesterday"
+      )
+      .map((objs, key) => ({
+        confirmedToday: _.sumBy(objs, "confirmedToday"),
+        confirmedYesterday: _.sumBy(objs, "confirmedYesterday"),
+        recoveredToday: _.sumBy(objs, "recoveredToday"),
+        recoveredYesterday: _.sumBy(objs, "recoveredYesterday"),
+        deathsToday: _.sumBy(objs, "deathsToday"),
+        deathsYesterday: _.sumBy(objs, "deathsYesterday"),
+        healingToday: _.sumBy(objs, "healingToday"),
+        healingYesterday: _.sumBy(objs, "healingYesterday"),
+      }))
+      .value()
+
+    return sum
+  })
+
+  const sum = _(result.flat(Infinity))
+    .groupBy(
+      "confirmedToday",
+      "confirmedYesterday",
+      "recoveredToday",
+      "recoveredYesterday",
+      "deathsToday",
+      "deathsYesterday",
+      "healingToday",
+      "healingYesterday"
+    )
+    .map((objs, key) => ({
+      confirmedToday: _.sumBy(objs, "confirmedToday"),
+      confirmedYesterday: _.sumBy(objs, "confirmedYesterday"),
+      recoveredToday: _.sumBy(objs, "recoveredToday"),
+      recoveredYesterday: _.sumBy(objs, "recoveredYesterday"),
+      deathsToday: _.sumBy(objs, "deathsToday"),
+      deathsYesterday: _.sumBy(objs, "deathsYesterday"),
+      healingToday: _.sumBy(objs, "healingToday"),
+      healingYesterday: _.sumBy(objs, "healingYesterday"),
+    }))
+    .value()
+
+  const confirmedToday = _.sumBy(
+    sum,
+    value => value.confirmedToday + value.confirmedToday
+  )
+  const confirmedYesterday = _.sumBy(
+    sum,
+    value => value.confirmedYesterday + value.confirmedYesterday
+  )
+
+  const recoveredToday = _.sumBy(
+    sum,
+    value => value.recoveredToday + value.recoveredToday
+  )
+  const recoveredYesterday = _.sumBy(
+    sum,
+    value => value.recoveredYesterday + value.recoveredYesterday
+  )
+
+  const deathsToday = _.sumBy(
+    sum,
+    value => value.deathsToday + value.deathsToday
+  )
+  const deathsYesterday = _.sumBy(
+    sum,
+    value => value.deathsYesterday + value.deathsYesterday
+  )
+
+  const healingToday = _.sumBy(
+    sum,
+    value => value.healingToday + value.healingToday
+  )
+  const healingYesterday = _.sumBy(
+    sum,
+    value => value.healingYesterday + value.healingYesterday
+  )
 
   return (
     <>
@@ -89,32 +233,40 @@ const IndexPage = props => {
           </div>
         </div>
         <div className="grid grid-cols-12 gap-4">
-          <div className="lg:col-span-3 md:col-span-6 sm:col-span-12 col-span-12 bg-gray-800 rounded overflow-hidden shadow-lg h-48">
+          <div className="lg:col-span-3 md:col-span-6 sm:col-span-12 col-span-12 bg-gray-800 rounded overflow-hidden shadow-lg h-56">
             <Confirmed
               confirmed={getConfirmed}
               recovered={getRecovered}
               deaths={getDeaths}
+              confirmedToday={confirmedToday}
+              confirmedYesterday={confirmedYesterday}
             />
           </div>
-          <div className="lg:col-span-3 md:col-span-6 sm:col-span-12 col-span-12 bg-gray-800 rounded overflow-hidden shadow-lg h-48">
+          <div className="lg:col-span-3 md:col-span-6 sm:col-span-12 col-span-12 bg-gray-800 rounded overflow-hidden shadow-lg h-56">
             <Healing
               confirmed={getConfirmed}
               recovered={getRecovered}
               deaths={getDeaths}
+              healingToday={healingToday}
+              healingYesterday={healingYesterday}
             />
           </div>
-          <div className="lg:col-span-3 md:col-span-6 sm:col-span-12 col-span-12 bg-gray-800 rounded overflow-hidden shadow-lg h-48">
+          <div className="lg:col-span-3 md:col-span-6 sm:col-span-12 col-span-12 bg-gray-800 rounded overflow-hidden shadow-lg h-56">
             <Recovered
               confirmed={getConfirmed}
               recovered={getRecovered}
               deaths={getDeaths}
+              recoveredToday={recoveredToday}
+              recoveredYesterday={recoveredYesterday}
             />
           </div>
-          <div className="lg:col-span-3 md:col-span-6 sm:col-span-12 col-span-12 bg-gray-800 rounded overflow-hidden shadow-lg h-48">
+          <div className="lg:col-span-3 md:col-span-6 sm:col-span-12 col-span-12 bg-gray-800 rounded overflow-hidden shadow-lg h-56">
             <Deaths
               confirmed={getConfirmed}
               recovered={getRecovered}
               deaths={getDeaths}
+              deathsToday={deathsToday}
+              deathsYesterday={deathsYesterday}
             />
           </div>
         </div>

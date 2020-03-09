@@ -11,9 +11,15 @@ exports.sourceNodes = async ({
   actions: { createNode },
   createContentDigest,
 }) => {
-  const confirmed = await fetch(`https://us-central1-covid-19-9142d.cloudfunctions.net/api/covid-19-confirmed`)
-  const recovered = await fetch(`https://us-central1-covid-19-9142d.cloudfunctions.net/api/covid-19-recovered`)
-  const deaths = await fetch(`https://us-central1-covid-19-9142d.cloudfunctions.net/api/covid-19-deaths`)
+  const confirmed = await fetch(
+    `https://us-central1-covid-19-9142d.cloudfunctions.net/api/covid-19-confirmed`
+  )
+  const recovered = await fetch(
+    `https://us-central1-covid-19-9142d.cloudfunctions.net/api/covid-19-recovered`
+  )
+  const deaths = await fetch(
+    `https://us-central1-covid-19-9142d.cloudfunctions.net/api/covid-19-deaths`
+  )
   const resultConfirmed = await confirmed.json()
   const resultRecovered = await recovered.json()
   const resultDeaths = await deaths.json()

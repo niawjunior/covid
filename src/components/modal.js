@@ -118,7 +118,13 @@ const ModalView = ({ visible, modalClick, data, all }) => {
   return (
     <Modal
       width="600px"
-      title={`สถิติ ย้อนหลัง ตั้งแต่ วันที่ ${firstData} - ${lastData}`}
+      title={
+        <>
+          <span className="p-1 text-white bg-green-500">{`(${country_region})`}</span>{" "}
+          <span>{`สถิติ ย้อนหลัง ตั้งแต่ วันที่`}</span>{" "}
+          <span>{`${firstData} - ${lastData}`}</span>
+        </>
+      }
       visible={visible}
       onCancel={modalClick}
       footer={[<Button onClick={modalClick}>ปิด</Button>]}

@@ -64,7 +64,7 @@ const Table = ({ confirmed, recovered, deaths }) => {
       },
     },
     {
-      title: "รวมทั้งหมด",
+      title: "ผู้ติดเชื้อ",
       dataIndex: "confirmed",
       key: "confirmed",
       render: number => number.toLocaleString(),
@@ -108,7 +108,7 @@ const Table = ({ confirmed, recovered, deaths }) => {
       )}
       <DataTable
         size="middle"
-        scroll={{ x: 1000 }}
+        scroll={{ x: 1200 }}
         columns={columns}
         pagination={{ pageSize: 10 }}
         dataSource={finalData}
