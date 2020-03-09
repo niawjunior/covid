@@ -9,9 +9,11 @@ import Deaths from "../components/deaths"
 import Recovered from "../components/recovered"
 import Healing from "../components/healing"
 import Pie from "../components/pie"
+import Bar from "../components/bar"
 import Table from "../components/table"
-const StyledPie = styled.div`
-  /* height: 18rem; */
+
+const StyledChart = styled.div`
+  height: 22rem;
 `
 const mapByCountry = data => {
   const result = _.chain(data)
@@ -194,6 +196,45 @@ const IndexPage = props => {
     value => value.healingYesterday + value.healingYesterday
   )
 
+  // table
+
+  const dataArr = Object.entries(confirmedData).map(([key, value]) => {
+    const children = value.data
+      .map((item, index) => {
+        const recovered = Number(
+          recoveredData[key].data.map(value => _.last(value.data).value)[index]
+        )
+        const deaths = Number(
+          deathsData[key].data.map(value => _.last(value.data).value)[index]
+        )
+        return {
+          key: Number(index),
+          from: value.country_region,
+          parent: false,
+          country_region: item.province_state,
+          confirmed: Number(_.last(item.data).value),
+          recovered: recovered,
+          deaths: deaths,
+          healing: _.last(item.data).value - (recovered + deaths),
+        }
+      })
+      .sort((a, b) => b.confirmed - a.confirmed)
+
+    const data = {
+      key: key,
+      parent: true,
+      country_region: value.country_region,
+      confirmed: value.sum,
+      recovered: recoveredData[key].sum,
+      deaths: deathsData[key].sum,
+      healing: value.sum - (recoveredData[key].sum + deathsData[key].sum),
+      ...(value.data.length > 1 && { children: children }),
+    }
+    return data
+  })
+
+  const finalData = dataArr.sort((a, b) => b.confirmed - a.confirmed)
+
   return (
     <>
       <Layout>
@@ -271,15 +312,28 @@ const IndexPage = props => {
             />
           </div>
         </div>
-        <div className="flex flex-col mt-5">
-          <StyledPie className="text-center bg-gray-800 rounded overflow-hidden shadow-lg">
-            <h1 className="text-white mt-4">เปรียบเทียบอัตราส่วน</h1>
-            <Pie
-              confirmed={getConfirmed}
-              recovered={getRecovered}
-              deaths={getDeaths}
-            />
-          </StyledPie>
+        <div className="grid grid-cols-12 gap-4 mt-4">
+          <div className="lg:col-span-6 md:col-span-6 sm:col-span-12 col-span-12 bg-gray-800 rounded overflow-hidden shadow-lg">
+            <StyledChart className="text-center bg-gray-800 rounded overflow-hidden shadow-lg">
+              <h1 className="text-white mt-4">เปรียบเทียบอัตราส่วน</h1>
+              <Pie
+                confirmed={getConfirmed}
+                recovered={getRecovered}
+                deaths={getDeaths}
+              />
+            </StyledChart>
+          </div>
+
+          <div className="lg:col-span-6 md:col-span-6 sm:col-span-12 col-span-12 bg-gray-800 rounded overflow-hidden shadow-lg">
+            <StyledChart className="text-center bg-gray-800 rounded overflow-hidden shadow-lg">
+              <h1 className="text-white mt-4">เหตุการณ์ ย้อนหลัง 1 อาทิตย์</h1>
+              <Bar
+                confirmed={getConfirmed}
+                recovered={getRecovered}
+                deaths={getDeaths}
+              />
+            </StyledChart>
+          </div>
         </div>
         <div className="grid grid-cols-12 mt-5 ">
           <div className="bg-gray-800 col-span-12 text-center px-4 rounded overflow-hidden shadow-lg">
@@ -288,6 +342,7 @@ const IndexPage = props => {
               confirmed={getConfirmed}
               recovered={getRecovered}
               deaths={getDeaths}
+              data={finalData}
             />
           </div>
         </div>

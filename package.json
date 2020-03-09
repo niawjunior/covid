@@ -4,7 +4,6 @@
   "version": "1.0.0",
   "author": "niaw",
   "dependencies": {
-    "@nivo/pie": "0.61.1",
     "antd": "4.0.1",
     "autoprefixer": "9.7.4",
     "echarts": "4.6.0",

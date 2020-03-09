@@ -4,7 +4,6 @@ import ReactEcharts from "echarts-for-react"
 const Pie = ({ confirmed, recovered, deaths }) => {
   const getOption = () => ({
     tooltip: {
-      trigger: "item",
       formatter: number => {
         return `${number.data.name} ${number.data.value.toLocaleString()} คน`
       },
@@ -13,6 +12,12 @@ const Pie = ({ confirmed, recovered, deaths }) => {
       {
         type: "pie",
         radius: "55%",
+        selectedMode: "single",
+        selectedOffset: 10,
+        clockwise: true,
+        label: {
+          fontFamily: "Kanit",
+        },
         data: [
           {
             value: confirmed.sum,
