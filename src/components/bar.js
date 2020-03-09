@@ -53,6 +53,10 @@ const Bar = ({ confirmed, recovered, deaths }) => {
       axisPointer: {
         type: "shadow",
       },
+      textStyle: {
+        color: "#fff",
+        fontFamily: "Kanit",
+      },
     },
     legend: {
       data: ["ติดเชื้อ", "กำลังรักษา", "รักษาหายแล้ว", "เสียชีวิตแล้ว"],
