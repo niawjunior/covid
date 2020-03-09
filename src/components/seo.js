@@ -51,7 +51,7 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           property: `og:image`,
-          content: `${site.siteMetadata.image}`,
+          content: `https://covid19th.com/${site.siteMetadata.image}`,
         },
       ].concat(meta)}
     />
