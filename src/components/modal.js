@@ -83,7 +83,6 @@ const ModalView = ({ visible, modalClick, data, all }) => {
   const firstData = _.last(sortResult).date
   const lastData = _.first(sortResult).date
 
-  console.log(sortResult)
   const columns = [
     {
       title: "วันที่",

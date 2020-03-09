@@ -129,7 +129,8 @@ const IndexPage = props => {
           </StyledPie>
         </div>
         <div className="grid grid-cols-12 mt-5 ">
-          <div className="bg-gray-800 col-span-12 text-center px-4 py-4 rounded overflow-hidden shadow-lg">
+          <div className="bg-gray-800 col-span-12 text-center px-4 rounded overflow-hidden shadow-lg">
+            <h1 className="text-white mt-4">แบ่งตาม ประเทศ/ภูมิภาค</h1>
             <Table
               confirmed={getConfirmed}
               recovered={getRecovered}
