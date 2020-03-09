@@ -30,6 +30,7 @@ const getParent = (all, country_region) => {
   const output = _(result.flat(Infinity))
     .groupBy("date")
     .map((objs, key) => ({
+      key: key,
       date: key,
       confirmed: _.sumBy(objs, "confirmed"),
       recovered: _.sumBy(objs, "recovered"),
@@ -123,9 +124,14 @@ const ModalView = ({ visible, modalClick, data, all }) => {
           {`(${country_region})`} {`${firstData} - ${lastData}`}
         </span>
       }
+      key={country_region}
       visible={visible}
       onCancel={modalClick}
-      footer={[<Button onClick={modalClick}>ปิด</Button>]}
+      footer={[
+        <Button key={country_region} onClick={modalClick}>
+          ปิด
+        </Button>,
+      ]}
     >
       <div className="h-auto w-100">
         <Table
