@@ -1,64 +1,57 @@
 import React from "react"
-import { ResponsivePie } from "@nivo/pie"
+import ReactEcharts from "echarts-for-react"
+
 const Pie = ({ confirmed, recovered, deaths }) => {
-  const data = [
-    {
-      id: "ผู้ติดเชื้อ",
-      label: "ผู้ติดเชื้อ",
-      value: confirmed.sum,
-      color: "hsl(143, 55%, 62%)",
+  const getOption = () => ({
+    tooltip: {
+      trigger: "item",
+      formatter: number => {
+        return `${number.data.name} ${number.data.value.toLocaleString()} คน`
+      },
     },
-    {
-      id: "กำลังรักษา",
-      label: "กำลังรักษา",
-      value: confirmed.sum - (recovered.sum + deaths.sum),
-      color: "hsl(33, 90%, 65%)",
-    },
-    {
-      id: "รักษาหายแล้ว",
-      label: "รักษาหายแล้ว",
-      value: recovered.sum,
-      color: "hsl(51, 89%, 67%)",
-    },
-    {
-      id: "เสียชีวิตแล้ว",
-      label: "เสียชีวิตแล้ว",
-      value: deaths.sum,
-      color: "hsl(0, 97%, 85%)",
-    },
-  ]
+    series: [
+      {
+        type: "pie",
+        radius: "55%",
+        data: [
+          {
+            value: confirmed.sum,
+            name: "ผู้ติดเชื้อ",
+            itemStyle: { color: "hsl(143, 55%, 62%)" },
+          },
+          {
+            value: confirmed.sum - (recovered.sum + deaths.sum),
+            name: "กำลังรักษา",
+            itemStyle: { color: "hsl(33, 90%, 65%)" },
+          },
+          {
+            value: recovered.sum,
+            name: "รักษาหายแล้ว",
+            itemStyle: { color: "hsl(51, 89%, 67%)" },
+          },
+          {
+            value: deaths.sum,
+            name: "เสียชีวิต",
+            itemStyle: { color: "hsl(0, 97%, 85%)" },
+          },
+        ].sort(function(a, b) {
+          return a.value - b.value
+        }),
+        itemStyle: {
+          emphasis: {
+            shadowBlur: 10,
+            shadowOffsetX: 0,
+            shadowColor: "rgba(0, 0, 0, 0.5)",
+          },
+        },
 
-  const lineGraphSettings = {
-    theme: {
-      fontFamily: "Kanit",
-    },
-  }
+        animationType: "scale",
+        animationEasing: "elasticOut",
+      },
+    ],
+  })
 
-  return (
-    <ResponsivePie
-      theme={lineGraphSettings.theme}
-      data={data}
-      margin={{ top: 40, right: 90, bottom: 60, left: 90 }}
-      innerRadius={0.2}
-      sortByValue={true}
-      padAngle={2}
-      cornerRadius={0}
-      colors={d => d.color}
-      borderWidth={1}
-      radialLabelsTextXOffset={5}
-      radialLabelsTextColor="#ffffff"
-      radialLabelsLinkOffset={0}
-      radialLabelsLinkDiagonalLength={10}
-      radialLabelsLinkHorizontalLength={5}
-      radialLabelsLinkStrokeWidth={1}
-      radialLabelsLinkColor={{ from: "color" }}
-      slicesLabelsSkipAngle={10}
-      slicesLabelsTextColor="#000000"
-      animate={true}
-      motionStiffness={90}
-      motionDamping={15}
-    />
-  )
+  return <ReactEcharts option={getOption()} style={{ height: 300 }} />
 }
 
 export default Pie

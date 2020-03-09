@@ -11,7 +11,7 @@ import Healing from "../components/healing"
 import Pie from "../components/pie"
 import Table from "../components/table"
 const StyledPie = styled.div`
-  height: 18rem;
+  /* height: 18rem; */
 `
 const mapByCountry = data => {
   const result = _.chain(data)

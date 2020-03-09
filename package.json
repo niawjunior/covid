@@ -7,6 +7,8 @@
     "@nivo/pie": "0.61.1",
     "antd": "4.0.1",
     "autoprefixer": "9.7.4",
+    "echarts": "4.6.0",
+    "echarts-for-react": "2.0.15-beta.1",
     "gatsby": "^2.0.0",
     "gatsby-plugin-antd": "2.2.0",
     "gatsby-plugin-google-fonts": "1.0.1",
