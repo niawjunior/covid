@@ -7,6 +7,10 @@ const Pie = ({ confirmed, recovered, deaths }) => {
       formatter: number => {
         return `${number.data.name} ${number.data.value.toLocaleString()} คน`
       },
+      textStyle: {
+        color: "#fff",
+        fontFamily: "Kanit",
+      },
     },
     series: [
       {
