@@ -68,24 +68,36 @@ const Table = ({ confirmed, recovered, deaths }) => {
       dataIndex: "confirmed",
       key: "confirmed",
       render: number => number.toLocaleString(),
+      sorter: (a, b) => {
+        return b.confirmed - a.confirmed
+      },
     },
     {
       title: "กำลังรักษา",
       dataIndex: "healing",
       key: "healing",
       render: number => number.toLocaleString(),
+      sorter: (a, b) => {
+        return b.healing - a.healing
+      },
     },
     {
       title: "รักษาหายแล้ว",
       dataIndex: "recovered",
       key: "recovered",
       render: number => number.toLocaleString(),
+      sorter: (a, b) => {
+        return b.recovered - a.recovered
+      },
     },
     {
       title: "เสียชีวิต",
       dataIndex: "deaths",
       key: "deaths",
       render: number => number.toLocaleString(),
+      sorter: (a, b) => {
+        return b.deaths - a.deaths
+      },
     },
   ]
 

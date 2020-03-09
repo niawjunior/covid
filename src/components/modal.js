@@ -121,7 +121,7 @@ const ModalView = ({ visible, modalClick, data, all }) => {
       title={
         <>
           <span className="p-1 text-white bg-green-500">{`(${country_region})`}</span>{" "}
-          <span>{`สถิติ ย้อนหลัง ตั้งแต่ วันที่`}</span>{" "}
+          <span>{`สถิติ ย้อนหลัง `}</span>{" "}
           <span>{`${firstData} - ${lastData}`}</span>
         </>
       }
