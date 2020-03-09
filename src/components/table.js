@@ -28,14 +28,9 @@ const Table = ({ confirmed, recovered, deaths }) => {
           from: value.country_region,
           parent: false,
           country_region: item.province_state,
-          confirmed: _.last(item.data).value,
+          confirmed: Number(_.last(item.data).value),
           recovered: recovered,
           deaths: deaths,
-          timeline: {
-            confirmed: item.data,
-            recovered: recoveredData[key].data[index].data,
-            deaths: deathsData[key].data[index].data,
-          },
           healing: _.last(item.data).value - (recovered + deaths),
         }
       })
@@ -59,9 +54,10 @@ const Table = ({ confirmed, recovered, deaths }) => {
       title: "ประเทศ / ภูมิภาค",
       dataIndex: "country_region",
       key: "country_region",
-      render: (text, record) => {
+      width: "30%",
+      render: text => {
         return (
-          <span className={record.parent ? "" : "text-blue-500 cursor-pointer"}>
+          <span className="text-blue-500 cursor-pointer">
             {text === "" ? "ไม่ได้ระบุ" : text}
           </span>
         )
@@ -94,30 +90,33 @@ const Table = ({ confirmed, recovered, deaths }) => {
   ]
 
   const finalData = dataArr.sort((a, b) => b.confirmed - a.confirmed)
-
+  const all = {
+    confirmedData,
+    recoveredData,
+    deathsData,
+  }
   return (
     <>
       {visible && (
         <Modal
           key={1}
           data={provinceData}
+          all={all}
           visible={visible}
           modalClick={showModal}
         />
       )}
       <DataTable
         size="middle"
-        scroll={{ x: 1000, y: 250 }}
+        scroll={{ x: 1000 }}
         columns={columns}
-        pagination={{ pageSize: 5 }}
+        pagination={{ pageSize: 10 }}
         dataSource={finalData}
         onRow={(record, rowIndex) => {
           return {
             onClick: () => {
-              if (!record.parent) {
-                setProvinceData(record)
-                setVisible(true)
-              }
+              setProvinceData(record)
+              setVisible(true)
             },
           }
         }}

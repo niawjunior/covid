@@ -57,7 +57,7 @@ const IndexPage = props => {
           role="alert"
         >
           <div className="flex">
-            <div className="py-1">
+            <div>
               <svg
                 className="fill-current h-6 w-6 text-teal-500 mr-4"
                 xmlns="http://www.w3.org/2000/svg"
@@ -70,15 +70,15 @@ const IndexPage = props => {
               <p className="font-bold">
                 เว็บไซต์นี้ ใช้ข้อมูลจาก{" "}
                 <a
-                  href="https://systems.jhu.edu/research/public-health/ncov/"
+                  href="https://github.com/CSSEGISandData/COVID-19"
                   rel="noopener noreferrer"
                   target="_blank"
                 >
-                  CSSEGISandData
-                </a>{" "}
-                (ดึงข้อมูลมา ทุกๆ 5 ชั่วโมง) ขอบคุณ{" "}
+                  CSSEGISandData{" "}
+                </a>
+                ขอบคุณ{" "}
                 <a
-                  href="https://github.com/CSSEGISandData/COVID-19"
+                  href="https://systems.jhu.edu/research/public-health/ncov/"
                   rel="noopener noreferrer"
                   target="_blank"
                 >
