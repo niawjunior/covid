@@ -3,6 +3,7 @@ module.exports = {
     title: `COVID-19`,
     description: `ติดตามสถานการณ์ COVID-19 ในปัจจุบัน`,
     author: `@niaw`,
+    image: `src/static/og.png`,
   },
   plugins: [
     `gatsby-plugin-styled-components`,

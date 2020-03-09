@@ -12,6 +12,7 @@ function SEO({ description, lang, meta, title }) {
             title
             description
             author
+            image
           }
         }
       }
@@ -44,6 +45,14 @@ function SEO({ description, lang, meta, title }) {
           property: `og:type`,
           content: `website`,
         },
+        {
+          property: `og:url`,
+          content: `https://covid19th.com/`,
+        },
+        {
+          property: `og:image`,
+          content: `${site.siteMetadata.image}`,
+        },
       ].concat(meta)}
     />
   )
@@ -57,6 +66,7 @@ SEO.defaultProps = {
 
 SEO.propTypes = {
   description: PropTypes.string,
+  image: PropTypes.string,
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,

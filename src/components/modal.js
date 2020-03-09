@@ -119,11 +119,9 @@ const ModalView = ({ visible, modalClick, data, all }) => {
     <Modal
       width="600px"
       title={
-        <>
-          <span className="p-1 text-white bg-green-500">{`(${country_region})`}</span>{" "}
-          <span>{`สถิติ ย้อนหลัง `}</span>{" "}
-          <span>{`${firstData} - ${lastData}`}</span>
-        </>
+        <span className="p-1 text-white bg-green-500 text-sm">
+          {`(${country_region})`} {`${firstData} - ${lastData}`}
+        </span>
       }
       visible={visible}
       onCancel={modalClick}
