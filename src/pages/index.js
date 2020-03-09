@@ -134,7 +134,8 @@ const IndexPage = props => {
     return sum
   })
 
-  const sum = _(result.flat(Infinity))
+  const flat = [].concat(...result)
+  const sum = _(flat)
     .groupBy(
       "confirmedToday",
       "confirmedYesterday",
