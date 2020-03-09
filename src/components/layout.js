@@ -10,6 +10,7 @@ const Layout = ({ children }) => (
         site {
           siteMetadata {
             title
+            image
           }
         }
       }
@@ -23,7 +24,19 @@ const Layout = ({ children }) => (
               name: "description",
               content: "ติดตามสถานการณ์ COVID-19 ในปัจจุบัน",
             },
+            {
+              name: "og:title",
+              content: "COVID-19",
+            },
+            {
+              name: "og:description",
+              content: "ติดตามสถานการณ์ COVID-19 ในปัจจุบัน",
+            },
             { name: "keywords", content: "covid-19, covid, โควิค" },
+            {
+              name: "og:image",
+              content: `https://covid19th.com/${data.site.siteMetadata.image}`,
+            },
           ]}
         >
           <html lang="en" />
