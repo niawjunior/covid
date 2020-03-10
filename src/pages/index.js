@@ -3,7 +3,6 @@ import _ from "lodash"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import styled from "styled-components"
-import Footer from "../components/footer"
 import Confirmed from "../components/confirmed"
 import Deaths from "../components/deaths"
 import Recovered from "../components/recovered"
@@ -381,7 +380,6 @@ const IndexPage = props => {
           </div>
         </div>
       </Layout>
-      <Footer />
     </>
   )
 }
