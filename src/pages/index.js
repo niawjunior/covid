@@ -356,7 +356,9 @@ const IndexPage = props => {
         </div>
         <div className="grid grid-cols-12 mt-5 ">
           <StyledChart className="bg-gray-800 col-span-12 text-center px-4 rounded overflow-hidden shadow-lg">
-            <h1 className="text-white mt-4">อัตราการติดเชื้อ</h1>
+            <h1 className="text-white mt-4">
+              อัตราการติดเชื้อ ย้อนหลัง 1 อาทิตย์
+            </h1>
             <Line data={confirmedLine} date={dateLine} />
           </StyledChart>
         </div>

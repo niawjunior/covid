@@ -1,7 +1,11 @@
 import React from "react"
 import ReactEcharts from "echarts-for-react"
 import Numeral from "numeral"
+import styled from "styled-components"
 
+const StyledLine = styled(ReactEcharts)`
+  height: 300px;
+`
 const Line = ({ date, data }) => {
   const getOption = () => ({
     tooltip: {
@@ -77,7 +81,7 @@ const Line = ({ date, data }) => {
     ],
   })
 
-  return <ReactEcharts option={getOption()} style={{ height: 300 }} />
+  return <StyledLine option={getOption()} />
 }
 
 export default Line

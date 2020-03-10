@@ -7,7 +7,7 @@ const About = () => {
         <div className="h-64">
           <div className="px-6 py-4 text-center">
             <p>
-              สวัสดีครับ ผมแอดมิน จากเพจ{" "}
+              สวัสดีครับ ผมแอดมิน (@Admin1) จากเพจ{" "}
               <a
                 href="https://facebook.com/JSKhamKham/"
                 rel="noopener noreferrer"
