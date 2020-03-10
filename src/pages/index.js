@@ -341,7 +341,7 @@ const IndexPage = props => {
             <h1 className="text-white mt-4">
               สัดส่วน ของผู้ติดเชื้อในแต่ละ ประเทศ/ภูมิภาค
             </h1>
-            <Word />
+            {/* <Word /> */}
           </div>
         </div>
         <div className="grid grid-cols-12 mt-5 ">
