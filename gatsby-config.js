@@ -8,6 +8,7 @@ module.exports = {
   plugins: [
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-antd`,
+    "gatsby-plugin-offline",
     `gatsby-plugin-postcss`,
     "gatsby-plugin-resolve-src",
     {
@@ -47,13 +48,18 @@ module.exports = {
       options: {
         name: "covid19",
         short_name: "covid-19",
-        start_url: "/",
+        start_url: "https://covid19th.com/",
         background_color: "#663399",
         theme_color: "#663399",
         display: "minimal-ui",
         icon: "src/images/icon.png",
       },
     },
-    "gatsby-plugin-offline",
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: "UA-143755483-3",
+      },
+    },
   ],
 }
