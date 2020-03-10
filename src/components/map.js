@@ -14,7 +14,7 @@ class Map extends React.Component {
     const data = Object.entries(this.props.data).map(([key, value]) => {
       const result = value.data.map(item => {
         return {
-          title: item.province_state || item.country_region,
+          title: `${item.province_state} (${item.country_region})`,
           latitude: Number(item.lat),
           longitude: Number(item.long),
         }
@@ -110,7 +110,6 @@ class Map extends React.Component {
     imageSeriesTemplate.setStateOnChildren = true
     imageSeriesTemplate.states.create("hover")
 
-    console.log(mapData)
     imageSeries.data = mapData
     this.chart = chart
   }
