@@ -2,9 +2,7 @@ import React from "react"
 
 import Percentage from "./percentage"
 const Deaths = props => {
-  const deathsResult = (
-    props.deathsToday - props.deathsYesterday
-  ).toLocaleString()
+  const deathsResult = props.deathsCompare.toLocaleString()
   const status = props.deathsToday > props.deathsYesterday ? true : false
 
   const text = status ? "+" + deathsResult : "-" + deathsResult

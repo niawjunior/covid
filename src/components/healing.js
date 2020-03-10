@@ -4,9 +4,7 @@ import Percentage from "./percentage"
 const Healing = props => {
   const healing = props.confirmed.sum - (props.recovered.sum + props.deaths.sum)
 
-  const healingResult = (
-    props.healingToday - props.healingYesterday
-  ).toLocaleString()
+  const healingResult = props.healingCompare.toLocaleString()
   const status = props.healingToday > props.healingYesterday ? true : false
 
   const text = status ? "+" + healingResult : "-" + healingResult

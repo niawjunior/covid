@@ -11,7 +11,6 @@ import Healing from "../components/healing"
 import Pie from "../components/pie"
 import Bar from "../components/bar"
 import Table from "../components/table"
-import Word from "../components/word"
 
 const StyledChart = styled.div`
   height: 22rem;
@@ -57,6 +56,7 @@ const IndexPage = props => {
   const { sum: recoveredSum, ...recoveredData } = getRecovered
   const { sum: deathsSum, ...deathsData } = getDeaths
 
+  // compare
   const result = Object.entries(confirmedData).map(([key, value]) => {
     const data = value.data.map((item, index) => {
       const confirmedToday = Number(item.data[item.data.length - 1].value)
@@ -110,92 +110,39 @@ const IndexPage = props => {
         healingCompare,
       }
     })
-
-    const sum = _(data)
-      .groupBy(
-        "confirmedToday",
-        "confirmedYesterday",
-        "recoveredToday",
-        "recoveredYesterday",
-        "deathsToday",
-        "deathsYesterday",
-        "healingToday",
-        "healingYesterday"
-      )
-      .map((objs, key) => ({
-        confirmedToday: _.sumBy(objs, "confirmedToday"),
-        confirmedYesterday: _.sumBy(objs, "confirmedYesterday"),
-        recoveredToday: _.sumBy(objs, "recoveredToday"),
-        recoveredYesterday: _.sumBy(objs, "recoveredYesterday"),
-        deathsToday: _.sumBy(objs, "deathsToday"),
-        deathsYesterday: _.sumBy(objs, "deathsYesterday"),
-        healingToday: _.sumBy(objs, "healingToday"),
-        healingYesterday: _.sumBy(objs, "healingYesterday"),
-      }))
-      .value()
-
-    return sum
+    return data
   })
 
   const flat = [].concat(...result)
-  const sum = _(flat)
-    .groupBy(
-      "confirmedToday",
-      "confirmedYesterday",
-      "recoveredToday",
-      "recoveredYesterday",
-      "deathsToday",
-      "deathsYesterday",
-      "healingToday",
-      "healingYesterday"
-    )
-    .map((objs, key) => ({
-      confirmedToday: _.sumBy(objs, "confirmedToday"),
-      confirmedYesterday: _.sumBy(objs, "confirmedYesterday"),
-      recoveredToday: _.sumBy(objs, "recoveredToday"),
-      recoveredYesterday: _.sumBy(objs, "recoveredYesterday"),
-      deathsToday: _.sumBy(objs, "deathsToday"),
-      deathsYesterday: _.sumBy(objs, "deathsYesterday"),
-      healingToday: _.sumBy(objs, "healingToday"),
-      healingYesterday: _.sumBy(objs, "healingYesterday"),
-    }))
-    .value()
 
-  const confirmedToday = _.sumBy(
-    sum,
-    value => value.confirmedToday + value.confirmedToday
-  )
-  const confirmedYesterday = _.sumBy(
-    sum,
-    value => value.confirmedYesterday + value.confirmedYesterday
-  )
+  const confirmedToday = flat
+    .map(item => item.confirmedToday)
+    .reduce((a, b) => (a += b))
+  const confirmedYesterday = flat
+    .map(item => item.confirmedYesterday)
+    .reduce((a, b) => (a += b))
+  const confirmedCompare = confirmedToday - confirmedYesterday
 
-  const recoveredToday = _.sumBy(
-    sum,
-    value => value.recoveredToday + value.recoveredToday
-  )
-  const recoveredYesterday = _.sumBy(
-    sum,
-    value => value.recoveredYesterday + value.recoveredYesterday
-  )
+  const recoveredToday = flat
+    .map(item => item.recoveredToday)
+    .reduce((a, b) => (a += b))
+  const recoveredYesterday = flat
+    .map(item => item.recoveredYesterday)
+    .reduce((a, b) => (a += b))
+  const recoveredCompare = recoveredToday - recoveredYesterday
 
-  const deathsToday = _.sumBy(
-    sum,
-    value => value.deathsToday + value.deathsToday
-  )
-  const deathsYesterday = _.sumBy(
-    sum,
-    value => value.deathsYesterday + value.deathsYesterday
-  )
+  const deathsToday = flat
+    .map(item => item.deathsToday)
+    .reduce((a, b) => (a += b))
+  const deathsYesterday = flat
+    .map(item => item.deathsYesterday)
+    .reduce((a, b) => (a += b))
+  const deathsCompare = deathsToday - deathsYesterday
 
-  const healingToday = _.sumBy(
-    sum,
-    value => value.healingToday + value.healingToday
-  )
-  const healingYesterday = _.sumBy(
-    sum,
-    value => value.healingYesterday + value.healingYesterday
-  )
+  const healingToday = confirmedToday - (recoveredToday + deathsToday)
+  const healingYesterday =
+    confirmedYesterday - (recoveredYesterday + deathsYesterday)
+  const healingCompare = healingToday - healingYesterday
 
   // table
 
@@ -283,6 +230,7 @@ const IndexPage = props => {
               deaths={getDeaths}
               confirmedToday={confirmedToday}
               confirmedYesterday={confirmedYesterday}
+              confirmedCompare={confirmedCompare}
             />
           </div>
           <div className="lg:col-span-3 md:col-span-6 sm:col-span-12 col-span-12 bg-gray-800 rounded overflow-hidden shadow-lg h-56">
@@ -292,6 +240,7 @@ const IndexPage = props => {
               deaths={getDeaths}
               healingToday={healingToday}
               healingYesterday={healingYesterday}
+              healingCompare={healingCompare}
             />
           </div>
           <div className="lg:col-span-3 md:col-span-6 sm:col-span-12 col-span-12 bg-gray-800 rounded overflow-hidden shadow-lg h-56">
@@ -301,6 +250,7 @@ const IndexPage = props => {
               deaths={getDeaths}
               recoveredToday={recoveredToday}
               recoveredYesterday={recoveredYesterday}
+              recoveredCompare={recoveredCompare}
             />
           </div>
           <div className="lg:col-span-3 md:col-span-6 sm:col-span-12 col-span-12 bg-gray-800 rounded overflow-hidden shadow-lg h-56">
@@ -310,6 +260,7 @@ const IndexPage = props => {
               deaths={getDeaths}
               deathsToday={deathsToday}
               deathsYesterday={deathsYesterday}
+              deathsCompare={deathsCompare}
             />
           </div>
         </div>
@@ -341,7 +292,6 @@ const IndexPage = props => {
             <h1 className="text-white mt-4">
               สัดส่วน ของผู้ติดเชื้อในแต่ละ ประเทศ/ภูมิภาค
             </h1>
-            {/* <Word /> */}
           </div>
         </div>
         <div className="grid grid-cols-12 mt-5 ">

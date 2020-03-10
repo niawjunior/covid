@@ -5,9 +5,7 @@ const StyledText = styled.div`
   font-size: 50px;
 `
 const Confirmed = props => {
-  const confirmedResult = (
-    props.confirmedToday - props.confirmedYesterday
-  ).toLocaleString()
+  const confirmedResult = props.confirmedCompare.toLocaleString()
   const status = props.confirmedToday > props.confirmedYesterday ? true : false
 
   const text = status ? "+" + confirmedResult : "-" + confirmedResult
