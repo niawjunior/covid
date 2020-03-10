@@ -2,7 +2,7 @@ import React from "react"
 import ReactEcharts from "echarts-for-react"
 import Numeral from "numeral"
 
-const Bar = ({ date, confirmed, recovered, healing, deaths }) => {
+const Line = ({ date, data }) => {
   const getOption = () => ({
     tooltip: {
       trigger: "axis",
@@ -16,7 +16,7 @@ const Bar = ({ date, confirmed, recovered, healing, deaths }) => {
       },
     },
     legend: {
-      data: ["ติดเชื้อ", "กำลังรักษา", "รักษาหายแล้ว", "เสียชีวิตแล้ว"],
+      data: date,
       textStyle: {
         color: "#fff",
         fontFamily: "Kanit",
@@ -57,28 +57,22 @@ const Bar = ({ date, confirmed, recovered, healing, deaths }) => {
     series: [
       {
         name: "ติดเชื้อ",
-        type: "bar",
-        data: confirmed,
+        type: "line",
+        data: data,
         itemStyle: { color: "hsl(143, 55%, 62%)" },
-      },
-      {
-        name: "กำลังรักษา",
-        type: "bar",
-        data: healing,
-        itemStyle: { color: "hsl(33, 90%, 65%)" },
-      },
-      {
-        name: "รักษาหายแล้ว",
-        type: "bar",
-        data: recovered,
-
-        itemStyle: { color: "hsl(51, 89%, 67%)" },
-      },
-      {
-        name: "เสียชีวิตแล้ว",
-        type: "bar",
-        data: deaths,
-        itemStyle: { color: "hsl(0, 97%, 85%)" },
+        smooth: true,
+        label: {
+          normal: {
+            show: true,
+            position: "top",
+            textStyle: {
+              color: "#ffffff",
+            },
+            formatter: number => {
+              return `${Numeral(number.value.toLocaleString()).format("0a")} คน`
+            },
+          },
+        },
       },
     ],
   })
@@ -86,4 +80,4 @@ const Bar = ({ date, confirmed, recovered, healing, deaths }) => {
   return <ReactEcharts option={getOption()} style={{ height: 300 }} />
 }
 
-export default Bar
+export default Line
