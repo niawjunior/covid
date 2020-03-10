@@ -2,6 +2,8 @@
   "name": "covid",
   "description": "covid19",
   "version": "1.0.0",
+  "browser": "browser.js",
+  "main": "index.js",
   "author": "niaw",
   "dependencies": {
     "@amcharts/amcharts4": "4.9.6",
@@ -31,7 +33,6 @@
     "prop-types": "^15.6.2",
     "react": "16.13.0",
     "react-dom": "16.13.0",
-    "react-emotion": "^9.2.12",
     "react-helmet": "^5.2.0",
     "styled-components": "5.0.1"
   },

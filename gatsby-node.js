@@ -1,10 +1,25 @@
 const fetch = require(`node-fetch`)
 
-exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
-  const config = getConfig()
-  config.node = {
-    fs: "empty",
-  }
+// exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
+//   const config = getConfig()
+//   config.node = {
+//     fs: "empty",
+//   }
+// }
+exports.onCreateWebpackConfig = ({
+  stage,
+  rules,
+  loaders,
+  plugins,
+  actions,
+}) => {
+  actions.setWebpackConfig({
+    externals: {
+      canvas: "commonjs canvas",
+      xmldom: "commonjs xmldom",
+      jsdom: "commonjs jsdom",
+    },
+  })
 }
 
 exports.sourceNodes = async ({
