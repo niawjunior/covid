@@ -34,7 +34,11 @@ const Layout = ({ children }) => (
               name: "og:description",
               content: "ติดตามสถานการณ์ COVID-19 ในปัจจุบัน",
             },
-            { name: "keywords", content: "covid-19, covid, โควิค" },
+            {
+              name: "keywords",
+              content:
+                "covid-19, covid, โควิค, โคโรน่า, ไวรัสโคโรน่า, ไวรัสโคโรน่าสายพันธุ์ใหม่, โควิค-19",
+            },
             {
               name: "og:image",
               content: `https://covid19th.com/${data.site.siteMetadata.image}`,
