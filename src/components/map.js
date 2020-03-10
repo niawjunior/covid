@@ -11,6 +11,19 @@ class Map extends React.Component {
   componentDidMount() {
     let chart = am4core.create("chartdiv", am4maps.MapChart)
 
+    const data = Object.entries(this.props.data).map(([key, value]) => {
+      const result = value.data.map(item => {
+        return {
+          title: item.province_state || item.country_region,
+          latitude: Number(item.lat),
+          longitude: Number(item.long),
+        }
+      })
+      return result
+    })
+
+    const mapData = [].concat(...data)
+
     chart.geodata = am4geodata_worldLow
 
     chart.projection = new am4maps.projections.Miller()
@@ -97,18 +110,7 @@ class Map extends React.Component {
     imageSeriesTemplate.setStateOnChildren = true
     imageSeriesTemplate.states.create("hover")
 
-    const data = Object.entries(this.props.data).map(([key, value]) => {
-      const result = value.data.map(item => {
-        return {
-          title: item.province_state,
-          latitude: Number(item.lat),
-          longitude: Number(item.long),
-        }
-      })
-      return result
-    })
-
-    const mapData = [].concat(...data)
+    console.log(mapData)
     imageSeries.data = mapData
     this.chart = chart
   }
