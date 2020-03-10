@@ -28,7 +28,7 @@ const Healing = props => {
         {healing.toLocaleString()} คน
       </div>
       <div className="font-bold text-center  flex justify-center text-white mt-5 text-sm">
-        <Percentage data={props} type={props.confirmed.sum} />
+        <Percentage data={healing} type={props.confirmed.sum} />
       </div>
     </div>
   )

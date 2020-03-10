@@ -26,7 +26,7 @@ const Recovered = props => {
         {props.recovered.sum.toLocaleString()} คน
       </div>
       <div className="font-bold text-center  flex justify-center text-white mt-5 text-sm">
-        <Percentage data={props} type={props.recovered.sum} />
+        <Percentage data={props.recovered.sum} type={props.confirmed.sum} />
       </div>
     </div>
   )

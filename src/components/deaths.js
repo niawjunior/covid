@@ -26,7 +26,7 @@ const Deaths = props => {
         {props.deaths.sum.toLocaleString()} คน
       </div>
       <div className="font-bold text-center flex justify-center text-white mt-5 text-sm">
-        <Percentage data={props} type={props.deaths.sum} />
+        <Percentage data={props.deaths.sum} type={props.confirmed.sum} />
       </div>
     </div>
   )
