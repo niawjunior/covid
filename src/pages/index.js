@@ -11,6 +11,7 @@ import Healing from "../components/healing"
 import Pie from "../components/pie"
 import Bar from "../components/bar"
 import Table from "../components/table"
+import Word from "../components/word"
 
 const StyledChart = styled.div`
   height: 22rem;
@@ -333,6 +334,14 @@ const IndexPage = props => {
                 deaths={getDeaths}
               />
             </StyledChart>
+          </div>
+        </div>
+        <div className="grid grid-cols-12 mt-5 ">
+          <div className="bg-gray-800 col-span-12 text-center px-4 rounded overflow-hidden shadow-lg">
+            <h1 className="text-white mt-4">
+              สัดส่วน ของผู้ติดเชื้อในแต่ละ ประเทศ/ภูมิภาค
+            </h1>
+            <Word />
           </div>
         </div>
         <div className="grid grid-cols-12 mt-5 ">
