@@ -4,6 +4,8 @@
   "version": "1.0.0",
   "author": "niaw",
   "dependencies": {
+    "@amcharts/amcharts4": "4.9.6",
+    "@amcharts/amcharts4-geodata": "4.1.12",
     "antd": "4.0.1",
     "autoprefixer": "9.7.4",
     "echarts": "4.6.0",

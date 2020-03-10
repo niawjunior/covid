@@ -12,6 +12,7 @@ import Pie from "../components/pie"
 import Bar from "../components/bar"
 import Table from "../components/table"
 import Line from "../components/line"
+import Map from "../components/map"
 
 const StyledChart = styled.div`
   height: 22rem;
@@ -361,6 +362,12 @@ const IndexPage = props => {
             </h1>
             <Line data={confirmedLine} date={dateLine} />
           </StyledChart>
+        </div>
+        <div className="grid grid-cols-12 mt-5 ">
+          <div className="bg-gray-800 col-span-12 text-center px-4 py-2 rounded overflow-hidden shadow-lg">
+            <h1 className="text-white mt-4">พื้นที่ ที่ได้รับผลกระทบ</h1>
+            <Map />
+          </div>
         </div>
         <div className="grid grid-cols-12 mt-5 ">
           <div className="bg-gray-800 col-span-12 text-center px-4 rounded overflow-hidden shadow-lg">
