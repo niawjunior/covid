@@ -366,7 +366,7 @@ const IndexPage = props => {
         <div className="grid grid-cols-12 mt-5 ">
           <div className="bg-gray-800 col-span-12 text-center px-4 py-2 rounded overflow-hidden shadow-lg">
             <h1 className="text-white mt-4">พื้นที่ ที่ได้รับผลกระทบ</h1>
-            <Map />
+            <Map data={confirmedData} />
           </div>
         </div>
         <div className="grid grid-cols-12 mt-5 ">
