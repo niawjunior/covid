@@ -6,20 +6,11 @@ const StyledText = styled.div`
 `
 const Confirmed = props => {
   const confirmedResult = props.confirmedCompare.toLocaleString()
-  const status = props.confirmedToday > props.confirmedYesterday ? true : false
-
-  const text = status ? "+" + confirmedResult : "-" + confirmedResult
 
   return (
     <div>
-      <span
-        className={
-          status
-            ? "float-right text-xl text-green-500 mr-2"
-            : "float-right text-xl text-red-500 mr-2"
-        }
-      >
-        {text}
+      <span className="float-right text-base text-white  bg-red-500 px-2">
+        {`+${confirmedResult}`}
       </span>
       <br />
       <div className="font-bold text-lg mb-2 text-center text-white mt-4">

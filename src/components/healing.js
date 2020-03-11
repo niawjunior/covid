@@ -3,22 +3,12 @@ import React from "react"
 import Percentage from "./percentage"
 const Healing = props => {
   const healing = props.confirmed.sum - (props.recovered.sum + props.deaths.sum)
-
   const healingResult = props.healingCompare.toLocaleString()
-  const status = props.healingToday > props.healingYesterday ? true : false
-
-  const text = status ? "+" + healingResult : "-" + healingResult
 
   return (
     <div>
-      <span
-        className={
-          status
-            ? "float-right text-xl text-green-500 mr-2"
-            : "float-right text-xl text-red-500 mr-2"
-        }
-      >
-        {text}
+      <span className="float-right text-base text-white  bg-red-500 px-2">
+        {`+${healingResult}`}
       </span>
       <br />
       <div className="font-bold text-lg mb-2 text-center text-white mt-4">

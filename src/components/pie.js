@@ -9,7 +9,7 @@ const Pie = ({ confirmed, recovered, deaths }) => {
       },
       textStyle: {
         color: "#fff",
-        fontFamily: "Kanit",
+        fontFamily: "Prompt",
       },
     },
     series: [
@@ -20,7 +20,7 @@ const Pie = ({ confirmed, recovered, deaths }) => {
         selectedOffset: 10,
         clockwise: true,
         label: {
-          fontFamily: "Kanit",
+          fontFamily: "Prompt",
         },
         data: [
           {

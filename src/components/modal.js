@@ -128,7 +128,7 @@ const ModalView = ({ visible, modalClick, data, all }) => {
       visible={visible}
       onCancel={modalClick}
       footer={[
-        <Button key={country_region} onClick={modalClick}>
+        <Button type="danger" key={country_region} onClick={modalClick}>
           ปิด
         </Button>,
       ]}

@@ -332,7 +332,9 @@ const IndexPage = props => {
         <div className="grid grid-cols-12 gap-4 mt-4">
           <div className="lg:col-span-6 md:col-span-6 sm:col-span-12 col-span-12 bg-gray-800 rounded overflow-hidden shadow-lg">
             <StyledChart className="text-center bg-gray-800 rounded overflow-hidden shadow-lg">
-              <h1 className="text-white mt-4">เปรียบเทียบอัตราส่วน</h1>
+              <h1 className="font-bold text-white mt-4 bg-blue-500 px-4 py-1 inline-block rounded-full">
+                เปรียบเทียบอัตราส่วน
+              </h1>
               <Pie
                 confirmed={getConfirmed}
                 recovered={getRecovered}
@@ -343,7 +345,9 @@ const IndexPage = props => {
 
           <div className="lg:col-span-6 md:col-span-6 sm:col-span-12 col-span-12 bg-gray-800 rounded overflow-hidden shadow-lg">
             <StyledChart className="text-center bg-gray-800 rounded overflow-hidden shadow-lg">
-              <h1 className="text-white mt-4">เหตุการณ์ ย้อนหลัง 1 อาทิตย์</h1>
+              <h1 className="font-bold text-white mt-4 bg-blue-500 px-4 py-1 inline-block rounded-full">
+                เหตุการณ์ ย้อนหลัง 1 อาทิตย์
+              </h1>
               <Bar
                 date={dateBar}
                 confirmed={confirmedBar}
@@ -355,22 +359,26 @@ const IndexPage = props => {
           </div>
         </div>
         <div className="grid grid-cols-12 mt-5 ">
-          <StyledChart className="bg-gray-800 col-span-12 text-center px-4 rounded overflow-hidden shadow-lg">
-            <h1 className="text-white mt-4">
+          <StyledChart className="bg-gray-800 col-span-12 text-center px-2 rounded overflow-hidden shadow-lg">
+            <h1 className="font-bold text-white mt-4 bg-blue-500 px-4 py-1 inline-block rounded-full">
               อัตราการติดเชื้อ ย้อนหลัง 1 อาทิตย์
             </h1>
             <Line data={confirmedLine} date={dateLine} />
           </StyledChart>
         </div>
         <div className="grid grid-cols-12 mt-5 ">
-          <div className="bg-gray-800 col-span-12 text-center px-4 py-2 rounded overflow-hidden shadow-lg">
-            <h1 className="text-white mt-4">พื้นที่ได้รับผลกระทบ</h1>
+          <div className="bg-gray-800 col-span-12 text-center px-2 rounded overflow-hidden shadow-lg">
+            <h1 className="font-bold text-white mt-4 mb-4 bg-blue-500 px-4 py-1 inline-block rounded-full">
+              พื้นที่ได้รับผลกระทบ
+            </h1>
             <Map data={confirmedData} />
           </div>
         </div>
         <div className="grid grid-cols-12 mt-5 ">
-          <div className="bg-gray-800 col-span-12 text-center px-4 rounded overflow-hidden shadow-lg">
-            <h1 className="text-white mt-4">แบ่งตาม ประเทศ/ภูมิภาค</h1>
+          <div className="bg-gray-800 col-span-12 text-center px-2 rounded overflow-hidden shadow-lg">
+            <h1 className="font-bold text-white mt-4 mb-4 bg-blue-500 px-4 py-1 inline-block rounded-full">
+              แบ่งตาม ประเทศ/ภูมิภาค
+            </h1>
             <Table
               confirmed={getConfirmed}
               recovered={getRecovered}

@@ -3,20 +3,11 @@ import React from "react"
 import Percentage from "./percentage"
 const Recovered = props => {
   const recoveredResult = props.recoveredCompare.toLocaleString()
-  const status = props.recoveredToday > props.recoveredYesterday ? true : false
-
-  const text = status ? "+" + recoveredResult : "-" + recoveredResult
 
   return (
     <div>
-      <span
-        className={
-          status
-            ? "float-right text-xl text-green-500 mr-2"
-            : "float-right text-xl text-red-500 mr-2"
-        }
-      >
-        {text}
+      <span className="float-right text-base text-white  bg-red-500 px-2">
+        {`+${recoveredResult}`}
       </span>
       <br />
       <div className="font-bold text-lg mb-2 text-center text-white mt-4">

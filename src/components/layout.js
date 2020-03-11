@@ -49,7 +49,7 @@ const Layout = ({ children }) => (
         </Helmet>
         <Header siteTitle={data.site.siteMetadata.title} />
         <div className="p-4 antialiased text-gray-900 items-center min-h-screen">
-          <div className="shadow-2xl px-4 py-4">{children}</div>
+          <div className="shadow-2xl px-4 pb-4">{children}</div>
         </div>
         <Footer />
       </>

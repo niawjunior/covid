@@ -5,6 +5,7 @@ import styled from "styled-components"
 
 const StyledLine = styled(ReactEcharts)`
   height: 300px;
+  width: 100%;
 `
 const Line = ({ date, data }) => {
   const getOption = () => ({
@@ -16,19 +17,19 @@ const Line = ({ date, data }) => {
 
       textStyle: {
         color: "#fff",
-        fontFamily: "Kanit",
+        fontFamily: "Prompt",
       },
     },
     legend: {
       data: date,
       textStyle: {
         color: "#fff",
-        fontFamily: "Kanit",
+        fontFamily: "Prompt",
       },
     },
     grid: {
       left: "3%",
-      right: "4%",
+      right: "3%",
       bottom: "3%",
       containLabel: true,
     },
@@ -39,7 +40,7 @@ const Line = ({ date, data }) => {
         axisLabel: {
           textStyle: {
             color: "#fff",
-            fontFamily: "Kanit",
+            fontFamily: "Prompt",
           },
         },
       },
@@ -50,7 +51,7 @@ const Line = ({ date, data }) => {
         axisLabel: {
           textStyle: {
             color: "#fff",
-            fontFamily: "Kanit",
+            fontFamily: "Prompt",
           },
           formatter: function(value, idx) {
             return `${Numeral(value).format("0a")}`

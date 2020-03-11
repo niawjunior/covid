@@ -12,14 +12,15 @@ const Bar = ({ date, confirmed, recovered, healing, deaths }) => {
 
       textStyle: {
         color: "#fff",
-        fontFamily: "Kanit",
+        fontFamily: "Prompt",
       },
     },
     legend: {
+      top: "5",
       data: ["ติดเชื้อ", "กำลังรักษา", "รักษาหายแล้ว", "เสียชีวิตแล้ว"],
       textStyle: {
         color: "#fff",
-        fontFamily: "Kanit",
+        fontFamily: "Prompt",
       },
     },
     grid: {
@@ -35,7 +36,7 @@ const Bar = ({ date, confirmed, recovered, healing, deaths }) => {
         axisLabel: {
           textStyle: {
             color: "#fff",
-            fontFamily: "Kanit",
+            fontFamily: "Prompt",
           },
         },
       },
@@ -46,7 +47,7 @@ const Bar = ({ date, confirmed, recovered, healing, deaths }) => {
         axisLabel: {
           textStyle: {
             color: "#fff",
-            fontFamily: "Kanit",
+            fontFamily: "Prompt",
           },
           formatter: function(value, idx) {
             return `${Numeral(value).format("0a")}`

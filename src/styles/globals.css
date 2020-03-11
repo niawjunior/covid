@@ -11,5 +11,13 @@
 @import "tailwindcss/utilities";
 
 * {
-  font-family: "Kanit", sans-serif;
+  font-family: "Prompt", sans-serif;
+}
+
+.ant-pagination {
+  color: #ffffff !important;
+}
+
+.ant-table-pagination.ant-pagination {
+  color: #ffffff !important;
 }
