@@ -290,7 +290,7 @@ const IndexPage = props => {
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-12 gap-4">
+        <div className="grid grid-cols-12 gap-2">
           <CardSummary className="lg:col-span-3 md:col-span-6 sm:col-span-12 col-span-12">
             <Confirmed
               confirmed={getConfirmed}
@@ -319,7 +319,7 @@ const IndexPage = props => {
             />
           </CardSummary>
         </div>
-        <div className="grid grid-cols-12 gap-4 mt-4">
+        <div className="grid grid-cols-12 gap-2 mt-2">
           <div className="lg:col-span-6 md:col-span-6 sm:col-span-12 col-span-12 bg-gray-800 rounded overflow-hidden shadow-lg">
             <StyledChart className="text-center bg-gray-800 rounded overflow-hidden shadow-lg">
               <h1 className="font-bold text-white mt-4 bg-blue-500 px-4 py-1 inline-block rounded-full">
@@ -332,7 +332,6 @@ const IndexPage = props => {
               />
             </StyledChart>
           </div>
-
           <div className="lg:col-span-6 md:col-span-6 sm:col-span-12 col-span-12 bg-gray-800 rounded overflow-hidden shadow-lg">
             <StyledChart className="text-center bg-gray-800 rounded overflow-hidden shadow-lg">
               <h1 className="font-bold text-white mt-4 bg-blue-500 px-4 py-1 inline-block rounded-full">
@@ -348,7 +347,7 @@ const IndexPage = props => {
             </StyledChart>
           </div>
         </div>
-        <div className="grid grid-cols-12 mt-5 ">
+        <div className="grid grid-cols-12 mt-2">
           <StyledChart className="bg-gray-800 col-span-12 text-center px-2 rounded overflow-hidden shadow-lg">
             <h1 className="font-bold text-white mt-4 bg-blue-500 px-4 py-1 inline-block rounded-full">
               อัตราการติดเชื้อ ย้อนหลัง 1 อาทิตย์
@@ -356,7 +355,7 @@ const IndexPage = props => {
             <Line data={confirmedLine} date={dateLine} />
           </StyledChart>
         </div>
-        <div className="grid grid-cols-12 mt-5 ">
+        <div className="grid grid-cols-12 mt-2 ">
           <div className="bg-gray-800 col-span-12 text-center px-2 rounded overflow-hidden shadow-lg">
             <h1 className="font-bold text-white mt-4 mb-4 bg-blue-500 px-4 py-1 inline-block rounded-full">
               พื้นที่ได้รับผลกระทบ
@@ -364,7 +363,7 @@ const IndexPage = props => {
             <Map data={confirmedData} />
           </div>
         </div>
-        <div className="grid grid-cols-12 mt-5 ">
+        <div className="grid grid-cols-12 mt-2">
           <div className="bg-gray-800 col-span-12 text-center px-2 rounded overflow-hidden shadow-lg">
             <h1 className="font-bold text-white mt-4 mb-4 bg-blue-500 px-4 py-1 inline-block rounded-full">
               แบ่งตาม ประเทศ/ภูมิภาค

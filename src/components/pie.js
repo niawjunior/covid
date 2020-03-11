@@ -1,7 +1,6 @@
 import React from "react"
 import ReactEcharts from "echarts-for-react"
 import { color } from "../config/colors"
-import Numeral from "numeral"
 const Pie = ({ confirmed, recovered, deaths }) => {
   const option = () => ({
     tooltip: {
@@ -15,15 +14,14 @@ const Pie = ({ confirmed, recovered, deaths }) => {
     series: [
       {
         type: "pie",
-        radius: "40%",
+        radius: "55%",
         selectedMode: "single",
         selectedOffset: 10,
         clockwise: true,
         label: {
           fontFamily: "Prompt",
-          fontSize: "10",
           formatter: function(item) {
-            return `${item.name} (${Numeral(item.data.value).format("0a")})`
+            return `${item.name}`
           },
         },
         labelLine: {
