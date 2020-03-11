@@ -1,9 +1,10 @@
 import React from "react"
-import ReactEcharts from "echarts-for-react"
 import Numeral from "numeral"
+import ReactEcharts from "echarts-for-react"
 
+import { color } from "../config/colors"
 const Bar = ({ date, confirmed, recovered, healing, deaths }) => {
-  const getOption = () => ({
+  const option = () => ({
     tooltip: {
       trigger: "axis",
       axisPointer: {
@@ -17,6 +18,8 @@ const Bar = ({ date, confirmed, recovered, healing, deaths }) => {
     },
     legend: {
       top: "5",
+      itemWidth: 10,
+      itemHeight: 10,
       data: ["ติดเชื้อ", "กำลังรักษา", "รักษาหายแล้ว", "เสียชีวิตแล้ว"],
       textStyle: {
         color: "#fff",
@@ -49,9 +52,7 @@ const Bar = ({ date, confirmed, recovered, healing, deaths }) => {
             color: "#fff",
             fontFamily: "Prompt",
           },
-          formatter: function(value, idx) {
-            return `${Numeral(value).format("0a")}`
-          },
+          formatter: value => `${Numeral(value).format("0a")}`,
         },
       },
     ],
@@ -60,31 +61,31 @@ const Bar = ({ date, confirmed, recovered, healing, deaths }) => {
         name: "ติดเชื้อ",
         type: "bar",
         data: confirmed,
-        itemStyle: { color: "hsl(143, 55%, 62%)" },
+        itemStyle: { color: color.colorTemplate.confirmed },
       },
       {
         name: "กำลังรักษา",
         type: "bar",
         data: healing,
-        itemStyle: { color: "hsl(33, 90%, 65%)" },
+        itemStyle: { color: color.colorTemplate.healing },
       },
       {
         name: "รักษาหายแล้ว",
         type: "bar",
         data: recovered,
 
-        itemStyle: { color: "hsl(51, 89%, 67%)" },
+        itemStyle: { color: color.colorTemplate.recovered },
       },
       {
         name: "เสียชีวิตแล้ว",
         type: "bar",
         data: deaths,
-        itemStyle: { color: "hsl(0, 97%, 85%)" },
+        itemStyle: { color: color.colorTemplate.deaths },
       },
     ],
   })
 
-  return <ReactEcharts option={getOption()} style={{ height: 300 }} />
+  return <ReactEcharts option={option()} />
 }
 
 export default Bar

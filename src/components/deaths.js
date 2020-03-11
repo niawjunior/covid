@@ -1,22 +1,20 @@
 import React from "react"
-
 import Percentage from "./percentage"
-const Deaths = props => {
-  const deathsResult = props.deathsCompare.toLocaleString()
+import { Styled } from "../styles/styled"
+
+const { BadgeTopRight, CardHeader, CardSummaryNumber } = Styled
+
+const Deaths = ({ deathsCompare, deaths, confirmed }) => {
   return (
     <div>
-      <span className="float-right text-base text-white  bg-red-500 px-2">
-        {`+${deathsResult}`}
-      </span>
+      <BadgeTopRight>{`+${deathsCompare.toLocaleString()}`}</BadgeTopRight>
       <br />
-      <div className="font-bold text-lg mb-2 text-center text-white mt-4">
-        เสียชีวิต
-      </div>
-      <div className="font-bold text-center text-red-400 mt-5 text-xl">
-        {props.deaths.sum.toLocaleString()} คน
-      </div>
+      <CardHeader>เสียชีวิต</CardHeader>
+      <CardSummaryNumber className="text-red-400">
+        {deaths.sum.toLocaleString()} คน
+      </CardSummaryNumber>
       <div className="font-bold text-center flex justify-center text-white mt-5 text-sm">
-        <Percentage data={props.deaths.sum} type={props.confirmed.sum} />
+        <Percentage data={deaths.sum} type={confirmed.sum} />
       </div>
     </div>
   )

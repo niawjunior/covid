@@ -12,6 +12,9 @@ import Bar from "../components/bar"
 import Table from "../components/table"
 import Line from "../components/line"
 import Map from "../components/map"
+import { Styled } from "../styles/styled"
+
+const { CardSummary } = Styled
 
 const StyledChart = styled.div`
   height: 22rem;
@@ -288,46 +291,33 @@ const IndexPage = props => {
           </div>
         </div>
         <div className="grid grid-cols-12 gap-4">
-          <div className="lg:col-span-3 md:col-span-6 sm:col-span-12 col-span-12 bg-gray-800 rounded overflow-hidden shadow-lg h-56">
+          <CardSummary className="lg:col-span-3 md:col-span-6 sm:col-span-12 col-span-12">
             <Confirmed
               confirmed={getConfirmed}
-              recovered={getRecovered}
-              deaths={getDeaths}
-              confirmedToday={confirmedToday}
-              confirmedYesterday={confirmedYesterday}
               confirmedCompare={confirmedCompare}
             />
-          </div>
-          <div className="lg:col-span-3 md:col-span-6 sm:col-span-12 col-span-12 bg-gray-800 rounded overflow-hidden shadow-lg h-56">
+          </CardSummary>
+          <CardSummary className="lg:col-span-3 md:col-span-6 sm:col-span-12 col-span-12">
             <Healing
-              confirmed={getConfirmed}
-              recovered={getRecovered}
-              deaths={getDeaths}
-              healingToday={healingToday}
-              healingYesterday={healingYesterday}
+              healing={getConfirmed.sum - (getRecovered.sum + getDeaths.sum)}
               healingCompare={healingCompare}
+              confirmed={getConfirmed}
             />
-          </div>
-          <div className="lg:col-span-3 md:col-span-6 sm:col-span-12 col-span-12 bg-gray-800 rounded overflow-hidden shadow-lg h-56">
+          </CardSummary>
+          <CardSummary className="lg:col-span-3 md:col-span-6 sm:col-span-12 col-span-12">
             <Recovered
               confirmed={getConfirmed}
               recovered={getRecovered}
-              deaths={getDeaths}
-              recoveredToday={recoveredToday}
-              recoveredYesterday={recoveredYesterday}
               recoveredCompare={recoveredCompare}
             />
-          </div>
-          <div className="lg:col-span-3 md:col-span-6 sm:col-span-12 col-span-12 bg-gray-800 rounded overflow-hidden shadow-lg h-56">
+          </CardSummary>
+          <CardSummary className="lg:col-span-3 md:col-span-6 sm:col-span-12 col-span-12">
             <Deaths
               confirmed={getConfirmed}
-              recovered={getRecovered}
               deaths={getDeaths}
-              deathsToday={deathsToday}
-              deathsYesterday={deathsYesterday}
               deathsCompare={deathsCompare}
             />
-          </div>
+          </CardSummary>
         </div>
         <div className="grid grid-cols-12 gap-4 mt-4">
           <div className="lg:col-span-6 md:col-span-6 sm:col-span-12 col-span-12 bg-gray-800 rounded overflow-hidden shadow-lg">

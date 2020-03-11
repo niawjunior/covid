@@ -1,12 +1,12 @@
 import React from "react"
 import ReactEcharts from "echarts-for-react"
-
+import { color } from "../config/colors"
+import Numeral from "numeral"
 const Pie = ({ confirmed, recovered, deaths }) => {
-  const getOption = () => ({
+  const option = () => ({
     tooltip: {
-      formatter: number => {
-        return `${number.data.name} ${number.data.value.toLocaleString()} คน`
-      },
+      formatter: item =>
+        `${item.data.name} ${item.data.value.toLocaleString()} คน`,
       textStyle: {
         color: "#fff",
         fontFamily: "Prompt",
@@ -21,31 +21,35 @@ const Pie = ({ confirmed, recovered, deaths }) => {
         clockwise: true,
         label: {
           fontFamily: "Prompt",
+          formatter: function(item) {
+            return `${item.name} (${Numeral(item.data.value).format("0a")})`
+          },
+        },
+        labelLine: {
+          length: 5,
         },
         data: [
           {
             value: confirmed.sum,
             name: "ผู้ติดเชื้อ",
-            itemStyle: { color: "hsl(143, 55%, 62%)" },
+            itemStyle: { color: color.colorTemplate.confirmed },
           },
           {
             value: confirmed.sum - (recovered.sum + deaths.sum),
             name: "กำลังรักษา",
-            itemStyle: { color: "hsl(33, 90%, 65%)" },
+            itemStyle: { color: color.colorTemplate.healing },
           },
           {
             value: recovered.sum,
             name: "รักษาหายแล้ว",
-            itemStyle: { color: "hsl(51, 89%, 67%)" },
+            itemStyle: { color: color.colorTemplate.recovered },
           },
           {
             value: deaths.sum,
             name: "เสียชีวิต",
-            itemStyle: { color: "hsl(0, 97%, 85%)" },
+            itemStyle: { color: color.colorTemplate.deaths },
           },
-        ].sort(function(a, b) {
-          return a.value - b.value
-        }),
+        ].sort((a, b) => a.value - b.value),
         itemStyle: {
           emphasis: {
             shadowBlur: 10,
@@ -60,7 +64,7 @@ const Pie = ({ confirmed, recovered, deaths }) => {
     ],
   })
 
-  return <ReactEcharts option={getOption()} style={{ height: 300 }} />
+  return <ReactEcharts option={option()} />
 }
 
 export default Pie

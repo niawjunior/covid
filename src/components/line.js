@@ -1,14 +1,10 @@
 import React from "react"
 import ReactEcharts from "echarts-for-react"
 import Numeral from "numeral"
-import styled from "styled-components"
+import { color } from "../config/colors"
 
-const StyledLine = styled(ReactEcharts)`
-  height: 300px;
-  width: 100%;
-`
 const Line = ({ date, data }) => {
-  const getOption = () => ({
+  const option = () => ({
     tooltip: {
       trigger: "axis",
       axisPointer: {
@@ -53,9 +49,7 @@ const Line = ({ date, data }) => {
             color: "#fff",
             fontFamily: "Prompt",
           },
-          formatter: function(value, idx) {
-            return `${Numeral(value).format("0a")}`
-          },
+          formatter: value => `${Numeral(value).format("0a")}`,
         },
       },
     ],
@@ -64,7 +58,7 @@ const Line = ({ date, data }) => {
         name: "ติดเชื้อ",
         type: "line",
         data: data,
-        itemStyle: { color: "hsl(143, 55%, 62%)" },
+        itemStyle: { color: color.colorTemplate.confirmed },
         smooth: true,
         label: {
           normal: {
@@ -73,16 +67,15 @@ const Line = ({ date, data }) => {
             textStyle: {
               color: "#ffffff",
             },
-            formatter: number => {
-              return `${Numeral(number.value.toLocaleString()).format("0a")} คน`
-            },
+            formatter: number =>
+              `${Numeral(number.value.toLocaleString()).format("0a")} คน`,
           },
         },
       },
     ],
   })
 
-  return <StyledLine option={getOption()} />
+  return <ReactEcharts option={option()} />
 }
 
 export default Line

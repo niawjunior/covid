@@ -1,26 +1,22 @@
 import React from "react"
-
 import Percentage from "./percentage"
-const Healing = props => {
-  const healing = props.confirmed.sum - (props.recovered.sum + props.deaths.sum)
-  const healingResult = props.healingCompare.toLocaleString()
+import { Styled } from "../styles/styled"
 
+const { BadgeTopRight, CardHeader, CardSummaryNumber } = Styled
+
+const Healing = ({ healing, healingCompare, confirmed }) => {
   return (
-    <div>
-      <span className="float-right text-base text-white  bg-red-500 px-2">
-        {`+${healingResult}`}
-      </span>
+    <>
+      <BadgeTopRight>{`+${healingCompare.toLocaleString()}`}</BadgeTopRight>
       <br />
-      <div className="font-bold text-lg mb-2 text-center text-white mt-4">
-        กำลังรักษา
-      </div>
-      <div className="font-bold text-center text-orange-400 mt-5 text-xl">
+      <CardHeader>กำลังรักษา</CardHeader>
+      <CardSummaryNumber className="text-orange-400">
         {healing.toLocaleString()} คน
-      </div>
+      </CardSummaryNumber>
       <div className="font-bold text-center  flex justify-center text-white mt-5 text-sm">
-        <Percentage data={healing} type={props.confirmed.sum} />
+        <Percentage data={healing} type={confirmed.sum} />
       </div>
-    </div>
+    </>
   )
 }
 

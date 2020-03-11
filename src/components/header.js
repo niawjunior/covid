@@ -9,7 +9,7 @@ const Header = ({ siteTitle }) => {
   }
 
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-gray-900 p-6">
+    <nav className="flex items-center justify-between flex-wrap bg-gray-900 p-6 font-prompt">
       <div className="flex items-center flex-shrink-0 text-white mr-6">
         <Link className="text-xl text-red-400 hover:text-red-600" to="/">
           {siteTitle}

@@ -12,7 +12,7 @@ const StyledHover = styled.div`
 const Percentage = ({ data, type }) => {
   const percentage = (data / type) * 100
   return (
-    <StyledHover className="bg-gray-700 rounded-full flex items-center justify-center">
+    <StyledHover className="bg-gray-700 text-xs rounded-full border-2 border-blue-500 flex items-center justify-center">
       {percentage.toFixed(2)} %
     </StyledHover>
   )
