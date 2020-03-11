@@ -32,9 +32,7 @@ const Table = ({ data, confirmed, recovered, deaths }) => {
       dataIndex: "confirmed",
       key: "confirmed",
       render: number => number.toLocaleString(),
-      sorter: (a, b) => {
-        return b.confirmed - a.confirmed
-      },
+      sorter: (a, b) => b.confirmed - a.confirmed,
     },
     {
       title: "กำลังรักษา",

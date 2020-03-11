@@ -65,7 +65,7 @@ const IndexPage = props => {
     const data = value.data.map((item, index) => {
       const confirmedToday = Number(item.data[item.data.length - 1].value)
       const confirmedYesterday = Number(item.data[item.data.length - 2].value)
-      const confirmedCompare = Number(confirmedToday - confirmedYesterday)
+      const confirmedCompare = confirmedToday - confirmedYesterday
 
       const recoveredToday = Number(
         recoveredData[key].data[index].data[
@@ -77,7 +77,7 @@ const IndexPage = props => {
           recoveredData[key].data[index].data.length - 2
         ].value
       )
-      const recoveredCompare = Number(recoveredToday - recoveredYesterday)
+      const recoveredCompare = recoveredToday - recoveredYesterday
 
       const deathsToday = Number(
         deathsData[key].data[index].data[
@@ -89,15 +89,12 @@ const IndexPage = props => {
           deathsData[key].data[index].data.length - 2
         ].value
       )
-      const deathsCompare = Number(deathsToday - deathsYesterday)
+      const deathsCompare = deathsToday - deathsYesterday
 
-      const healingToday = Number(
-        confirmedToday - (recoveredToday + deathsToday)
-      )
-      const healingYesterday = Number(
+      const healingToday = confirmedToday - (recoveredToday + deathsToday)
+      const healingYesterday =
         confirmedYesterday - (recoveredYesterday + deathsYesterday)
-      )
-      const healingCompare = Number(healingToday - healingYesterday)
+      const healingCompare = healingToday - healingYesterday
 
       return {
         confirmedToday,
@@ -157,22 +154,26 @@ const IndexPage = props => {
       const children = value.data
         .map((item, index) => {
           const recovered = Number(
-            recoveredData[key].data.map(value => _.last(value.data).value)[
-              index
-            ]
+            recoveredData[key].data.map(
+              value => value.data[value.data.length - 1].value
+            )[index]
           )
           const deaths = Number(
-            deathsData[key].data.map(value => _.last(value.data).value)[index]
+            deathsData[key].data.map(
+              value => value.data[value.data.length - 1].value
+            )[index]
           )
           return {
-            key: Number(index),
+            key: index,
             from: value.country_region,
             parent: false,
             country_region: item.province_state,
-            confirmed: Number(_.last(item.data).value),
+            confirmed: Number(item.data[item.data.length - 1].value),
             recovered: recovered,
             deaths: deaths,
-            healing: _.last(item.data).value - (recovered + deaths),
+            healing:
+              Number(item.data[item.data.length - 1].value) -
+              (recovered + deaths),
           }
         })
         .sort((a, b) => b.confirmed - a.confirmed)

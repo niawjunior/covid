@@ -128,7 +128,12 @@ const ModalView = ({ visible, modalClick, data, all }) => {
       visible={visible}
       onCancel={modalClick}
       footer={[
-        <Button type="danger" key={country_region} onClick={modalClick}>
+        <Button
+          className="font-prompt"
+          type="danger"
+          key={country_region}
+          onClick={modalClick}
+        >
           ปิด
         </Button>,
       ]}
@@ -140,6 +145,7 @@ const ModalView = ({ visible, modalClick, data, all }) => {
           scroll={{ x: 500 }}
           dataSource={sortResult}
           pagination={{ pageSize: 5 }}
+          className="font-prompt"
         />
       </div>
     </Modal>
