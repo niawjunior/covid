@@ -10,7 +10,6 @@ const Bar = ({ date, confirmed, recovered, healing, deaths }) => {
       axisPointer: {
         type: "shadow",
       },
-
       textStyle: {
         color: "#fff",
         fontFamily: "Prompt",

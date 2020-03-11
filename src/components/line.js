@@ -10,7 +10,8 @@ const Line = ({ date, data }) => {
       axisPointer: {
         type: "shadow",
       },
-
+      formatter: item =>
+        `${item[0].seriesName} ${item[0].value.toLocaleString()} คน`,
       textStyle: {
         color: "#fff",
         fontFamily: "Prompt",
@@ -67,8 +68,8 @@ const Line = ({ date, data }) => {
             textStyle: {
               color: "#ffffff",
             },
-            formatter: number =>
-              `${Numeral(number.value.toLocaleString()).format("0a")} คน`,
+            formatter: item =>
+              `${Numeral(item.value.toLocaleString()).format("0a")}`,
           },
         },
       },
