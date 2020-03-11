@@ -15,18 +15,19 @@ const Pie = ({ confirmed, recovered, deaths }) => {
     series: [
       {
         type: "pie",
-        radius: "55%",
+        radius: "40%",
         selectedMode: "single",
         selectedOffset: 10,
         clockwise: true,
         label: {
           fontFamily: "Prompt",
+          fontSize: "10",
           formatter: function(item) {
             return `${item.name} (${Numeral(item.data.value).format("0a")})`
           },
         },
         labelLine: {
-          length: 5,
+          length: 2,
         },
         data: [
           {
