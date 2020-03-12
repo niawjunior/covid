@@ -14,9 +14,11 @@ class Map extends React.Component {
     const data = Object.entries(this.props.data).map(([key, value]) => {
       const result = value.data.map(item => {
         return {
-          title: `${item.province_state || item.country_region} ติดเชื้อ ${
-            item.data[item.data.length - 1].value
-          } คน`,
+          title: `${item.province_state || item.country_region} ${
+            Number(item.data[item.data.length - 1].value) !== 0
+              ? `ติดเชื้อ ${Number(item.data[item.data.length - 1].value)} คน`
+              : ""
+          }  `,
           latitude: Number(item.lat),
           longitude: Number(item.long),
         }
