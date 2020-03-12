@@ -4,9 +4,7 @@ import { Link } from "gatsby"
 const Header = ({ siteTitle }) => {
   const [navOpen, setNavOpen] = useState(false)
 
-  const clickNav = () => {
-    setNavOpen(prev => !prev)
-  }
+  const clickNav = () => setNavOpen(!navOpen)
 
   return (
     <nav className="flex items-center justify-between flex-wrap bg-gray-900 p-6 font-prompt">

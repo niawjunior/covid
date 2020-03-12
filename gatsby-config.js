@@ -18,16 +18,14 @@ module.exports = {
         tailwind: true,
         printRejected: true,
         purgeOnly: [`src/styles/globals.css`],
-        // develop: true, // Enable while using `gatsby develop`
+        develop: false,
       },
     },
     {
       resolve: `gatsby-plugin-nprogress`,
       options: {
-        // Setting a color is optional.
         color: `tomato`,
-        // Disable the loading spinner.
-        showSpinner: true,
+        showSpinner: false,
       },
     },
     {

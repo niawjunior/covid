@@ -2,7 +2,7 @@ import React from "react"
 import * as am4core from "@amcharts/amcharts4/core"
 
 import * as am4maps from "@amcharts/amcharts4/maps"
-import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldUltra"
+import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow"
 import am4themes_animated from "@amcharts/amcharts4/themes/animated"
 
 am4core.useTheme(am4themes_animated)
@@ -14,7 +14,9 @@ class Map extends React.Component {
     const data = Object.entries(this.props.data).map(([key, value]) => {
       const result = value.data.map(item => {
         return {
-          title: `${item.province_state} (${item.country_region})`,
+          title: `${item.province_state || item.country_region} ติดเชื้อ ${
+            item.data[item.data.length - 1].value
+          } คน`,
           latitude: Number(item.lat),
           longitude: Number(item.long),
         }
@@ -27,25 +29,17 @@ class Map extends React.Component {
     chart.geodata = am4geodata_worldLow
 
     chart.projection = new am4maps.projections.Miller()
-
-    // Create map polygon series
     let polygonSeries = chart.series.push(new am4maps.MapPolygonSeries())
 
-    // Exclude Antartica
     polygonSeries.exclude = ["AQ"]
 
-    // Make map load polygon (like country names) data from GeoJSON
     polygonSeries.useGeodata = true
 
-    // Configure series
     let polygonTemplate = polygonSeries.mapPolygons.template
     polygonTemplate.strokeOpacity = 0.5
     polygonTemplate.nonScalingStroke = true
 
-    // create capital markers
     let imageSeries = chart.series.push(new am4maps.MapImageSeries())
-
-    // define template
     let imageSeriesTemplate = imageSeries.mapImages.template
 
     let circle = imageSeries.mapImages.template.createChild(am4core.Circle)
@@ -75,7 +69,6 @@ class Map extends React.Component {
     }
 
     chart.homeZoomLevel = 2
-    // Add zoom control
     chart.zoomControl = new am4maps.ZoomControl()
 
     let homeButton = new am4core.Button()
@@ -92,7 +85,6 @@ class Map extends React.Component {
     homeButton.parent = chart.zoomControl
     homeButton.insertBefore(chart.zoomControl.plusButton)
 
-    // set propertyfields
     imageSeriesTemplate.propertyFields.latitude = "latitude"
     imageSeriesTemplate.propertyFields.longitude = "longitude"
 

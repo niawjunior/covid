@@ -2,7 +2,12 @@ import React from "react"
 import Percentage from "./percentage"
 import { Styled } from "../styles/styled"
 
-const { BadgeTopRight, CardHeader, CardSummaryNumber } = Styled
+const {
+  BadgeTopRight,
+  CardHeader,
+  CardSummaryNumber,
+  PercentageTextWrap,
+} = Styled
 
 const Deaths = ({ deathsCompare, deaths, confirmed }) => {
   return (
@@ -13,9 +18,9 @@ const Deaths = ({ deathsCompare, deaths, confirmed }) => {
       <CardSummaryNumber className="text-red-400">
         {deaths.sum.toLocaleString()} คน
       </CardSummaryNumber>
-      <div className="font-bold text-center flex justify-center text-white mt-5 text-sm">
+      <PercentageTextWrap>
         <Percentage data={deaths.sum} type={confirmed.sum} />
-      </div>
+      </PercentageTextWrap>
     </div>
   )
 }

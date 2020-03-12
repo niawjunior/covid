@@ -18,9 +18,14 @@ const CardSummaryNumber = styled.div`
   ${props => (props.isBig ? tw`text-6xl` : tw`text-xl mt-5`)};
 `
 
+const PercentageTextWrap = styled.div`
+  ${tw`font-bold text-center flex justify-center text-white mt-5 text-sm`}
+`
+
 export const Styled = {
   CardSummary,
   BadgeTopRight,
   CardHeader,
   CardSummaryNumber,
+  PercentageTextWrap,
 }
