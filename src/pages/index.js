@@ -12,12 +12,17 @@ import Bar from "../components/bar"
 import Table from "../components/table"
 import Line from "../components/line"
 import Map from "../components/map"
+import Timelapse from "../components/timelapse"
 import { Styled } from "../styles/styled"
 
 const { CardSummary } = Styled
 
 const StyledChart = styled.div`
-  height: 22rem;
+  ${props =>
+    props.height &&
+    `
+  height: ${props.height}
+  `}
 `
 const mapByCountry = data => {
   const result = _.chain(data)
@@ -60,7 +65,40 @@ const IndexPage = props => {
   const { sum: recoveredSum, ...recoveredData } = getRecovered
   const { sum: deathsSum, ...deathsData } = getDeaths
 
-  // compare
+  const dateTimeline = Object.entries(confirmedData)
+    .map(([key, value]) => {
+      return value.data
+    })[0][0]
+    .data.map(item => item.date)
+
+  const getDataByDate = date => {
+    const data = Object.entries(confirmedData).map(([key, value]) => {
+      const confirmed = value.data
+        .map((value, index) => {
+          const find = (
+            value.data.find(
+              v => v.date === date && value.country_region !== "China"
+            ) || []
+          ).value
+          return Number(find)
+        })
+        .reduce((a, b) => (a += b))
+      return {
+        network: value.country_region || value.province_state,
+        value: confirmed,
+      }
+    })
+    const result = [...data]
+    return result
+  }
+  const newDateTimeline = dateTimeline.map(date => {
+    const key = { [date]: getDataByDate(date) }
+    return key
+  })
+
+  const objectTimeline = Object.assign(...newDateTimeline)
+
+  // // compare
   const resultCompare = Object.entries(confirmedData).map(([key, value]) => {
     const data = value.data.map((item, index) => {
       const confirmedToday = Number(item.data[item.data.length - 1].value)
@@ -145,9 +183,9 @@ const IndexPage = props => {
     confirmedYesterday - (recoveredYesterday + deathsYesterday)
   const healingCompare = healingToday - healingYesterday
 
-  // end compare
+  // // end compare
 
-  // table
+  // // table
 
   const dataTable = Object.entries(confirmedData)
     .map(([key, value]) => {
@@ -192,9 +230,9 @@ const IndexPage = props => {
     })
     .sort((a, b) => b.confirmed - a.confirmed)
 
-  // end table
+  // // end table
 
-  // bar
+  // // bar
 
   const resultBar = Object.entries(confirmedData).map(([key, value]) => {
     const result = value.data.map((value, index) => {
@@ -236,9 +274,9 @@ const IndexPage = props => {
   const recoveredBar = barMap.map(item => item.recovered)
   const deathsBar = barMap.map(item => item.deaths)
 
-  // end bar
+  // // end bar
 
-  // line
+  // // line
 
   const lineMap = _([].concat(...resultBar))
     .groupBy("date")
@@ -322,7 +360,10 @@ const IndexPage = props => {
         </div>
         <div className="grid grid-cols-12 gap-2 mt-2">
           <div className="lg:col-span-6 md:col-span-6 sm:col-span-12 col-span-12 bg-gray-800 rounded overflow-hidden shadow-lg">
-            <StyledChart className="text-center bg-gray-800 rounded overflow-hidden shadow-lg">
+            <StyledChart
+              height="22rem"
+              className="text-center bg-gray-800 rounded overflow-hidden shadow-lg"
+            >
               <h1 className="font-bold text-white mt-4 bg-blue-500 px-4 py-1 inline-block rounded-full">
                 เปรียบเทียบอัตราส่วน
               </h1>
@@ -334,7 +375,10 @@ const IndexPage = props => {
             </StyledChart>
           </div>
           <div className="lg:col-span-6 md:col-span-6 sm:col-span-12 col-span-12 bg-gray-800 rounded overflow-hidden shadow-lg">
-            <StyledChart className="text-center bg-gray-800 rounded overflow-hidden shadow-lg">
+            <StyledChart
+              height="22rem"
+              className="text-center bg-gray-800 rounded overflow-hidden shadow-lg"
+            >
               <h1 className="font-bold text-white mt-4 bg-blue-500 px-4 py-1 inline-block rounded-full">
                 เหตุการณ์ ย้อนหลัง 1 อาทิตย์
               </h1>
@@ -349,11 +393,29 @@ const IndexPage = props => {
           </div>
         </div>
         <div className="grid grid-cols-12 mt-2">
-          <StyledChart className="bg-gray-800 col-span-12 text-center px-2 rounded overflow-hidden shadow-lg">
+          <StyledChart
+            height="22rem"
+            className="bg-gray-800 col-span-12 text-center px-2 rounded overflow-hidden shadow-lg"
+          >
             <h1 className="font-bold text-white mt-4 bg-blue-500 px-4 py-1 inline-block rounded-full">
               อัตราการติดเชื้อ ย้อนหลัง 1 อาทิตย์
             </h1>
             <Line data={confirmedLine} date={dateLine} />
+          </StyledChart>
+        </div>
+        <div className="grid grid-cols-12 mt-2">
+          <StyledChart
+            height="27rem"
+            className="bg-gray-800 col-span-12 text-center px-2 rounded overflow-hidden shadow-lg"
+          >
+            <h1 className="font-bold text-white mt-4 bg-blue-500 px-4 py-1 inline-block rounded-full">
+              ไทม์ไลน์การติดเชื้อ ตั้งแต่ เริ่มต้น - ปัจจุบัน (ยกเว้น China)
+            </h1>
+            <Timelapse
+              start={dateTimeline[0]}
+              end={dateTimeline[dateTimeline.length - 1]}
+              data={objectTimeline}
+            />
           </StyledChart>
         </div>
         <div className="grid grid-cols-12 mt-2 ">

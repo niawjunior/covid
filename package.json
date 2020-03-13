@@ -10,6 +10,7 @@
     "@amcharts/amcharts4-geodata": "4.1.12",
     "antd": "4.0.1",
     "autoprefixer": "9.7.4",
+    "date-fns": "2.10.0",
     "echarts": "4.6.0",
     "echarts-for-react": "2.0.15-beta.1",
     "gatsby": "^2.0.0",
