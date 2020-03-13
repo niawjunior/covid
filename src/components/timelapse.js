@@ -41,7 +41,7 @@ class Timelapse extends React.Component {
       }
     })
 
-    var stepDuration = 1000
+    var stepDuration = 1500
 
     var categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis())
     categoryAxis.renderer.grid.template.location = 0
