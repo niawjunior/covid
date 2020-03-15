@@ -3,3 +3,19 @@
 @import "tailwindcss/components";
 
 @import "tailwindcss/utilities";
+
+.ant-pagination-item a {
+  color: #ffffff !important;
+}
+
+.ant-pagination-item-active a {
+  color: #1890ff !important;
+}
+
+.ant-pagination-item-link {
+  color: #ffffff !important;
+}
+
+.ant-pagination-item-ellipsis {
+  color: #ffffff !important;
+}

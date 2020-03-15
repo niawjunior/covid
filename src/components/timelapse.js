@@ -139,12 +139,6 @@ class Timelapse extends React.Component {
 
     chart.data = JSON.parse(JSON.stringify(data[year]))
     categoryAxis.zoom({ start: 0, end: 1 / chart.data.length })
-
-    series.events.on("inited", function() {
-      setTimeout(function() {
-        playButton.isActive = true
-      }, 500)
-    })
     this.chart = chart
   }
 
