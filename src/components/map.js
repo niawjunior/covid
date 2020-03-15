@@ -47,29 +47,6 @@ class Map extends React.Component {
     let circle = imageSeries.mapImages.template.createChild(am4core.Circle)
     circle.radius = 3
     circle.fill = am4core.color("red")
-
-    let circle2 = imageSeries.mapImages.template.createChild(am4core.Circle)
-    circle2.radius = 3
-    circle2.fill = am4core.color("red")
-
-    circle2.events.on("inited", function(event) {
-      animateBullet(event.target)
-    })
-
-    function animateBullet(circle) {
-      let animation = circle.animate(
-        [
-          { property: "scale", from: 1, to: 5 },
-          { property: "opacity", from: 1, to: 0 },
-        ],
-        1000,
-        am4core.ease.circleOut
-      )
-      animation.events.on("animationended", function(event) {
-        animateBullet(event.target.object)
-      })
-    }
-
     chart.homeZoomLevel = 2
     chart.zoomControl = new am4maps.ZoomControl()
 

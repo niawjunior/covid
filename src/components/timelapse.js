@@ -25,13 +25,14 @@ class Timelapse extends React.Component {
     label.y = am4core.percent(95)
     label.horizontalCenter = "right"
     label.verticalCenter = "middle"
-    label.dx = -15
+    label.dx = -30
     label.fontSize = 50
     label.fontFamily = "Prompt"
     var playButton = chart.plotContainer.createChild(am4core.PlayButton)
     playButton.x = am4core.percent(97)
     playButton.y = am4core.percent(95)
     playButton.dy = -2
+    playButton.dx = -20
     playButton.verticalCenter = "middle"
     playButton.events.on("toggled", function(event) {
       if (event.target.isActive) {
@@ -41,7 +42,7 @@ class Timelapse extends React.Component {
       }
     })
 
-    var stepDuration = 1500
+    var stepDuration = 500
 
     var categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis())
     categoryAxis.renderer.grid.template.location = 0
@@ -139,6 +140,12 @@ class Timelapse extends React.Component {
 
     chart.data = JSON.parse(JSON.stringify(data[year]))
     categoryAxis.zoom({ start: 0, end: 1 / chart.data.length })
+
+    series.events.on("inited", function() {
+      setTimeout(function() {
+        playButton.isActive = false
+      }, 0)
+    })
     this.chart = chart
   }
 
