@@ -12,7 +12,7 @@ import Bar from "../components/bar"
 import Table from "../components/table"
 import Line from "../components/line"
 import Map from "../components/map"
-import Timelapse from "../components/timelapse"
+// import Timelapse from "../components/timelapse"
 import { Styled } from "../styles/styled"
 
 const { CardSummary } = Styled
@@ -65,38 +65,38 @@ const IndexPage = props => {
   const { sum: recoveredSum, ...recoveredData } = getRecovered
   const { sum: deathsSum, ...deathsData } = getDeaths
 
-  const dateTimeline = Object.entries(confirmedData)
-    .map(([key, value]) => {
-      return value.data
-    })[0][0]
-    .data.map(item => item.date)
+  // const dateTimeline = Object.entries(confirmedData)
+  //   .map(([key, value]) => {
+  //     return value.data
+  //   })[0][0]
+  //   .data.map(item => item.date)
 
-  const getDataByDate = date => {
-    const data = Object.entries(confirmedData).map(([key, value]) => {
-      const confirmed = value.data
-        .map((value, index) => {
-          const find = (
-            value.data.find(
-              v => v.date === date && value.country_region !== "China"
-            ) || []
-          ).value
-          return Number(find)
-        })
-        .reduce((a, b) => (a += b))
-      return {
-        network: value.country_region || value.province_state,
-        value: confirmed,
-      }
-    })
-    const result = [...data]
-    return result
-  }
-  const newDateTimeline = dateTimeline.map(date => {
-    const key = { [date]: getDataByDate(date) }
-    return key
-  })
+  // const getDataByDate = date => {
+  //   const data = Object.entries(confirmedData).map(([key, value]) => {
+  //     const confirmed = value.data
+  //       .map((value, index) => {
+  //         const find = (
+  //           value.data.find(
+  //             v => v.date === date && value.country_region !== "China"
+  //           ) || []
+  //         ).value
+  //         return Number(find)
+  //       })
+  //       .reduce((a, b) => (a += b))
+  //     return {
+  //       network: value.country_region || value.province_state,
+  //       value: confirmed,
+  //     }
+  //   })
+  //   const result = [...data]
+  //   return result
+  // }
+  // const newDateTimeline = dateTimeline.map(date => {
+  //   const key = { [date]: getDataByDate(date) }
+  //   return key
+  // })
 
-  const objectTimeline = Object.assign(...newDateTimeline)
+  // const objectTimeline = Object.assign(...newDateTimeline)
 
   // // compare
   const resultCompare = Object.entries(confirmedData).map(([key, value]) => {
@@ -403,7 +403,7 @@ const IndexPage = props => {
             <Line data={confirmedLine} date={dateLine} />
           </StyledChart>
         </div>
-        <div className="grid grid-cols-12 mt-2">
+        {/* <div className="grid grid-cols-12 mt-2">
           <StyledChart
             height="27rem"
             className="bg-gray-800 col-span-12 text-center px-2 rounded overflow-hidden shadow-lg"
@@ -417,7 +417,7 @@ const IndexPage = props => {
               data={objectTimeline}
             />
           </StyledChart>
-        </div>
+        </div> */}
         <div className="grid grid-cols-12 mt-2 ">
           <div className="bg-gray-800 col-span-12 text-center px-2 rounded overflow-hidden shadow-lg">
             <h1 className="font-bold text-white mt-4 mb-4 bg-blue-500 px-4 py-1 inline-block rounded-full">
