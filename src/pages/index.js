@@ -105,16 +105,21 @@ const IndexPage = props => {
       const confirmedYesterday = Number(item.data[item.data.length - 2].value)
       const confirmedCompare = confirmedToday - confirmedYesterday
 
-      const recoveredToday = Number(
-        recoveredData[key].data[index].data[
-          recoveredData[key].data[index].data.length - 1
-        ].value
-      )
-      const recoveredYesterday = Number(
-        recoveredData[key].data[index].data[
-          recoveredData[key].data[index].data.length - 2
-        ].value
-      )
+      const recoveredToday = recoveredData[key].data[index]
+        ? Number(
+            recoveredData[key].data[index].data[
+              recoveredData[key].data[index].data.length - 1
+            ].value
+          )
+        : 0
+      const recoveredYesterday = recoveredData[key].data[index]
+        ? Number(
+            recoveredData[key].data[index].data[
+              recoveredData[key].data[index].data.length - 2
+            ].value
+          )
+        : 0
+
       const recoveredCompare = recoveredToday - recoveredYesterday
 
       const deathsToday = Number(
@@ -237,17 +242,22 @@ const IndexPage = props => {
   const resultBar = Object.entries(confirmedData).map(([key, value]) => {
     const result = value.data.map((value, index) => {
       const data = value.data.slice(-7)
-      const recovered = recoveredData[key].data[index].data.slice(-7)
-      const deaths = deathsData[key].data[index].data.slice(-7)
+      const recovered = recoveredData[key].data[index]
+        ? recoveredData[key].data[index].data.slice(-7)
+        : []
+      const deaths = deathsData[key].data[index]
+        ? deathsData[key].data[index].data.slice(-7)
+        : []
 
       const r = data.map((item, key) => {
         return {
           date: new Date(item.date).toDateString().split(" ")[0],
           confirmed: Number(item.value),
           healing:
-            Number(item.value) -
-            (Number(recovered[key].value) + Number(deaths[key].value)),
-          recovered: Number(recovered[key].value),
+            Number(item.value ? item.value : 0) -
+            (Number(recovered[key] ? recovered[key].value : 0) +
+              Number(deaths[key] ? deaths[key].value : 0)),
+          recovered: recovered[key] ? Number(recovered[key].value) : 0,
           deaths: Number(deaths[key].value),
         }
       })
