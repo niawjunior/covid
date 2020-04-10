@@ -80,10 +80,12 @@ exports.scheduledFunction = functions.pubsub
   .onRun(context => {
     axios
       .post("https://api.netlify.com/build_hooks/5e61bdd311f47028877352ee")
-      .then(result => {
-        return result
-      })
       .catch(error => {
         throw error
       })
+    return null
   })
+
+//   app.listen(3000, () => {
+//     console.log('Server Listening on http://localhost:3000/wallet');
+// });
